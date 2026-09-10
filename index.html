@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mann Mithra - Farmers-to-Market Direct Platform - SI H26033</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- ================= 3-SECOND APP LOGO SPLASH SCREEN (REQ #1) ================= -->
+  <div id="appSplashScreen" class="app-splash-overlay">
+    <div class="splash-content-box">
+      <img src="app_logo.jpg" alt="Mann Mithra Logo - SI H26033" class="splash-logo-img">
+      <h1 class="splash-title" data-i18n="brandName">Mann Mithra</h1>
+      <div class="splash-subtitle">Farmers-to-Market Direct Platform &bull; SI H26033</div>
+      <div class="splash-timer-progress">
+        <div class="splash-timer-bar"></div>
+      </div>
+      <div style="margin-top: 0.75rem; font-size: 0.8rem; color: #15803d; font-weight: 700;">
+        Connecting Farmers, Consumers &amp; B2B Wholesale Buyers
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="nav-container">
+      <div class="brand-wrapper" onclick="handleBrandClick()" title="Mann Mithra Home">
+        <img src="app_logo.jpg" class="brand-logo-img" alt="Mann Mithra Emblem">
+        <div>
+          <div class="brand-name-title" data-i18n="brandName">Mann Mithra</div>
+          <div class="brand-subtitle-line" data-i18n="brandSubtitle">Farmers-to-Market Direct Platform - SI H26033</div>
+        </div>
+      </div>
+
+      <div class="nav-actions-group">
+        <!-- 22 Official Indian Languages Dropdown -->
+        <select id="langSelect" class="lang-picker" onchange="setLanguage(this.value)" title="Choose Language">
+          <option value="en">English</option>
+          <option value="ta">தமிழ் (Tamil)</option>
+          <option value="hi">हिन्दी (Hindi)</option>
+          <option value="te">తెలుగు (Telugu)</option>
+          <option value="kn">ಕನ್ನಡ (Kannada)</option>
+          <option value="ml">മലയാളം (Malayalam)</option>
+          <option value="mr">मराठी (Marathi)</option>
+          <option value="bn">বাংলা (Bengali)</option>
+          <option value="gu">ગુજરાતી (Gujarati)</option>
+          <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+          <option value="or">ଓଡ଼ିଆ (Odia)</option>
+          <option value="as">অসমীয়া (Assamese)</option>
+          <option value="ur">اردو (Urdu)</option>
+          <option value="sa">संस्कृतम् (Sanskrit)</option>
+          <option value="kok">कोंकणी (Konkani)</option>
+          <option value="mai">मैथिली (Maithili)</option>
+          <option value="sat">ᱥᱟᱱᱛᱟᱲᱤ (Santali)</option>
+          <option value="doi">डोगरी (Dogri)</option>
+          <option value="ne">नेपाली (Nepali)</option>
+          <option value="sd">سنڌي (Sindhi)</option>
+          <option value="brx">बड़ो (Bodo)</option>
+          <option value="ks">کٲشُر (Kashmiri)</option>
+          <option value="mni">মৈতৈলোন্ (Manipuri)</option>
+        </select>
+
+        <!-- User Profile Status -->
+        <div id="userNavGroup" style="display: none; align-items: center; gap: 0.5rem;">
+          <img id="navUserAvatarImg" src="" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1.5px solid #15803d; display: none;" alt="User Avatar">
+          <span id="navRoleBadge" class="farmer-fpo-badge">Farmers/FPOs</span>
+          <span id="navUserName" style="font-weight: 700; font-size: 0.85rem; color: #14532d;">Ramesh</span>
+          <button class="btn btn-outline btn-sm" onclick="logoutUser()" title="Logout">
+            <i data-lucide="log-out" style="width: 14px; height: 14px;"></i>
+          </button>
+        </div>
+
+        <div id="authNavButtons">
+          <button class="btn btn-primary btn-sm" onclick="showAuthView('login')">
+            <span data-i18n="login">Login</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-content-area">
+
+    <!-- ================= 1. AUTHENTICATION (LOGIN & REGISTRATION) ================= -->
+    <section id="authSection" class="auth-overlay">
+      
+      <!-- Login Card -->
+      <div id="loginCard" class="auth-card">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <img src="app_logo.jpg" style="width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2.5px solid #15803d; margin-bottom: 0.4rem; box-shadow: 0 4px 12px rgba(21,128,61,0.2);" alt="Mann Mithra Logo">
+          <h2 style="font-weight: 800; color: #14532d;" data-i18n="brandName">Mann Mithra</h2>
+          <p style="font-size: 0.85rem; color: #64748b;" data-i18n="brandSubtitle">Farmers-to-Market Direct Platform - SI H26033</p>
+        </div>
+
+        <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" id="loginUsername" class="form-control" placeholder="e.g. ramesh_farmer" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+            <i data-lucide="log-in" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="login">Login</span>
+          </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 1.25rem; font-size: 0.85rem;">
+          <span>Don't have an account?</span>
+          <a href="#" onclick="showAuthView('register')" style="color: #15803d; font-weight: 700; margin-left: 0.35rem;" data-i18n="register">Register here</a>
+        </div>
+
+        <!-- 1-Click Demo Buttons -->
+        <div style="margin-top: 1.5rem; padding: 1rem; background: #f4faf6; border: 1.5px dashed #86efac; border-radius: 14px;">
+          <div style="font-size: 0.78rem; font-weight: 800; color: #166534; text-align: center; margin-bottom: 0.6rem;">
+            ⚡ 1-Click Role Logins
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem;">
+            <button class="btn btn-outline btn-sm" onclick="quickFillLogin('ramesh_farmer', 'password123')">
+              👨‍🌾 Farmer
+            </button>
+            <button class="btn btn-outline btn-sm" onclick="quickFillLogin('ananya_buyer', 'password123')">
+              🛒 Consumer
+            </button>
+            <button class="btn btn-outline btn-sm" onclick="quickFillLogin('agri_wholesale', 'password123')">
+              🏢 Bulk Buyer
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registration Card with Farmer Bank Details & Bulk Buyer Company -->
+      <div id="registerCard" class="auth-card" style="display: none;">
+        <div style="text-align: center; margin-bottom: 1.25rem;">
+          <h2 style="font-weight: 800; color: #14532d;" data-i18n="register">Create Account</h2>
+          <p style="font-size: 0.8rem; color: #64748b;">Direct Farmers &amp; Buyers Network</p>
+        </div>
+
+        <form id="registerForm" onsubmit="handleRegisterSubmit(event)">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" id="regFirstName" class="form-control" placeholder="e.g. Ramesh Kumar" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+            <div class="form-group">
+              <label>Mobile Number *</label>
+              <input type="tel" id="regMobile" class="form-control" placeholder="10 digits" required pattern="[0-9]{10}">
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" id="regEmail" class="form-control" placeholder="name@email.com" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+            <div class="form-group">
+              <label>Username *</label>
+              <input type="text" id="regUsername" class="form-control" placeholder="choose username" required>
+            </div>
+            <div class="form-group">
+              <label>Password *</label>
+              <input type="password" id="regPassword" class="form-control" placeholder="create password" required>
+            </div>
+          </div>
+
+          <!-- Role Selection Grid -->
+          <div class="form-group">
+            <label>Select Account Type *</label>
+            <div class="role-select-grid">
+              <label class="role-radio-card selected" id="roleCardFarmer" onclick="selectRole('farmer')">
+                <input type="radio" name="regRole" value="farmer" checked>
+                <div>
+                  <div class="role-info-title">🌾 <span>Farmer / FPO Producer</span></div>
+                  <div class="role-info-desc">Sell harvest directly to consumers and bulk buyers with zero commission.</div>
+                </div>
+              </label>
+
+              <label class="role-radio-card" id="roleCardConsumer" onclick="selectRole('consumer')">
+                <input type="radio" name="regRole" value="consumer">
+                <div>
+                  <div class="role-info-title">🛒 <span>Consumer / Direct Buyer</span></div>
+                  <div class="role-info-desc">Buy farm-fresh produce directly from verified local farmers near you.</div>
+                </div>
+              </label>
+
+              <label class="role-radio-card" id="roleCardBulk" onclick="selectRole('bulk_buyer')">
+                <input type="radio" name="regRole" value="bulk_buyer">
+                <div>
+                  <div class="role-info-title">🏢 <span>Bulk Order Buyer / B2B</span></div>
+                  <div class="role-info-desc">Procure bulk harvest lots, volume contracts, and custom mandi RFQs.</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- DYNAMIC FARMER BANK DETAILS (REQ #3) -->
+          <div id="farmerBankFieldsSection" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px; padding: 1rem; margin-bottom: 1.25rem;">
+            <div style="font-weight: 800; font-size: 0.88rem; color: #166534; margin-bottom: 0.6rem;" data-i18n="farmerBankTitle">
+              🏦 Farmer Bank &amp; Direct Payout Details
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div class="form-group">
+                <label data-i18n="bankNameLabel">Bank Name *</label>
+                <input type="text" id="regFarmerBank" class="form-control" placeholder="e.g. State Bank of India">
+              </div>
+              <div class="form-group">
+                <label data-i18n="accountNumberLabel">Bank Account Number *</label>
+                <input type="text" id="regFarmerAccount" class="form-control" placeholder="e.g. 98765432104921">
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div class="form-group">
+                <label data-i18n="ifscLabel">IFSC Code *</label>
+                <input type="text" id="regFarmerIFSC" class="form-control" placeholder="e.g. SBIN0001234">
+              </div>
+              <div class="form-group">
+                <label data-i18n="upiIdLabel">UPI ID *</label>
+                <input type="text" id="regFarmerUPI" class="form-control" placeholder="e.g. ramesh.farmer@sbi">
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-i18n="farmVillageLabel">Farm Location / Village *</label>
+              <input type="text" id="regFarmerVillage" class="form-control" placeholder="e.g. Pollachi, Coimbatore">
+            </div>
+          </div>
+
+          <!-- DYNAMIC BULK BUYER FIELDS (COMPANY NAME & GSTIN) -->
+          <div id="bulkBuyerFieldsSection" style="display: none; background: #eef2ff; border: 1.5px solid #c7d2fe; border-radius: 12px; padding: 1rem; margin-bottom: 1.25rem;">
+            <div style="font-weight: 800; font-size: 0.88rem; color: #3730a3; margin-bottom: 0.6rem;">
+              🏢 Bulk Buyer Company Credentials
+            </div>
+            <div class="form-group">
+              <label style="color: #3730a3;">Company / Enterprise Name *</label>
+              <input type="text" id="regCompanyName" class="form-control" placeholder="e.g. Agro Foods India Pvt Ltd">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div class="form-group">
+                <label style="color: #3730a3;">GSTIN Number</label>
+                <input type="text" id="regGSTIN" class="form-control" placeholder="33AAAAA0000A1Z5">
+              </div>
+              <div class="form-group">
+                <label style="color: #3730a3;">Business Type</label>
+                <select id="regBusinessType" class="form-control">
+                  <option value="Wholesale Mandi Trader">Wholesale Mandi Trader</option>
+                  <option value="Food Processing Company">Food Processing Company</option>
+                  <option value="Supermarket / Retail Chain">Supermarket / Retail Chain</option>
+                  <option value="Agricultural Exporter">Agricultural Exporter</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            <i data-lucide="user-check" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="register">Complete Registration</span>
+          </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 1rem; font-size: 0.85rem;">
+          <span>Already have an account?</span>
+          <a href="#" onclick="showAuthView('login')" style="color: #15803d; font-weight: 700; margin-left: 0.35rem;" data-i18n="login">Login here</a>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ================= 2. FULL-SCREEN FARMER INTERFACE ================= -->
+    <section id="farmerInterface" style="display: none;">
+      <div class="dashboard-layout-container">
+
+        <!-- Privacy Shield Banner -->
+        <div class="privacy-shield-banner">
+          <i data-lucide="shield-check" style="width: 22px; height: 22px; flex-shrink: 0;"></i>
+          <div>
+            <strong>🛡️ <span data-i18n="privacyProtected">Privacy Protected</span>:</strong>
+            <span data-i18n="privacyNotice">Buyer's sensitive private personal contact information is masked for data privacy compliance.</span>
+          </div>
+        </div>
+
+        <!-- Sub-Navigation Tabs Bar -->
+        <nav class="subnav-tabs-bar">
+          <button class="subnav-tab-btn active" id="btnTabHome" onclick="switchFarmerTab('home')">
+            <i data-lucide="home" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="navHome">Home</span>
+          </button>
+          <button class="subnav-tab-btn" id="btnTabProduce" onclick="switchFarmerTab('produce')">
+            <i data-lucide="apple" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="navProduce">My Produce</span>
+          </button>
+          <button class="subnav-tab-btn" id="btnTabForecast" onclick="switchFarmerTab('forecast')">
+            <i data-lucide="trending-up" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="navForecast">AI Forecast</span>
+          </button>
+          <button class="subnav-tab-btn" id="btnTabOrders" onclick="switchFarmerTab('orders')">
+            <i data-lucide="clipboard-list" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="navOrders">Orders</span>
+          </button>
+          <button class="subnav-tab-btn" id="btnTabAccount" onclick="switchFarmerTab('account')">
+            <i data-lucide="user" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="navAccount">Farmer Profile</span>
+          </button>
+        </nav>
+
+        <!-- FARMER TAB 1: HOME -->
+        <div id="farmerTabHome">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div>
+              <h1 style="font-size: 1.6rem; font-weight: 800; color: #14532d;" data-i18n="dashboardTitle">Farmer Direct Command Center</h1>
+              <p style="font-size: 0.88rem; color: #64748b;" data-i18n="dashboardSubtitle">Live Harvest Inventory, AI Market Demand &amp; Direct Consumer Orders</p>
+            </div>
+            <span class="farmer-fpo-badge">
+              <i data-lucide="users" style="width: 14px; height: 14px;"></i>
+              <span data-i18n="farmerFPO">Farmers/FPOs</span>
+            </span>
+          </div>
+
+          <!-- Duo Grid: My Produce + AI Demand Forecast -->
+          <div class="dashboard-grid-2col">
+            <!-- Produce Card -->
+            <div class="dashboard-card">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="font-weight: 800; font-size: 1.15rem;" data-i18n="myProduce">My Produce</h3>
+                <button class="btn btn-primary btn-sm" onclick="openAddProduceModal()">+ Add Crop</button>
+              </div>
+              <div id="homeProduceMiniList">
+                <!-- Mini items -->
+              </div>
+              <button class="btn btn-outline btn-sm" style="width: 100%; margin-top: 0.5rem;" onclick="switchFarmerTab('produce')">
+                View All Inventory &rarr;
+              </button>
+            </div>
+
+            <!-- Forecast Card -->
+            <div class="dashboard-card">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="font-weight: 800; font-size: 1.15rem;" data-i18n="aiDemandForecast">AI Demand Forecast</h3>
+                <button class="btn btn-outline btn-sm" onclick="switchFarmerTab('forecast')">Full Forecast &rarr;</button>
+              </div>
+              <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; font-weight: 700; color: #166534;">
+                  <span data-i18n="tomatoDemand">Tomato Demand</span>
+                  <span style="background: #dcfce7; padding: 2px 8px; border-radius: 8px;" data-i18n="forecastHigh">Forecast: High Demand</span>
+                </div>
+                <div style="width: 100%; height: 80px; margin: 8px 0;">
+                  <svg viewBox="0 0 100 45" style="width: 100%; height: 100%;">
+                    <defs>
+                      <linearGradient id="gradGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#22c55e" stop-opacity="0.35"/>
+                        <stop offset="100%" stop-color="#22c55e" stop-opacity="0.0"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M 5 36 Q 25 28 45 32 T 75 18 T 94 6" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M 5 36 Q 25 28 45 32 T 75 18 T 94 6 L 94 44 L 5 44 Z" fill="url(#gradGreen)"/>
+                    <circle cx="94" cy="6" r="3.5" fill="#15803d"/>
+                  </svg>
+                </div>
+                <div style="font-size: 0.8rem; color: #166534; font-weight: 700;">
+                  <span data-i18n="futureDemand">Future Demand</span>: Koyambedu &amp; Pollachi Mandis showing +28% buyers surge.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Orders Section -->
+          <div class="dashboard-card" style="margin-bottom: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 style="font-weight: 800; font-size: 1.15rem;" data-i18n="activeOrders">Active Orders</h3>
+              <button class="btn btn-outline btn-sm" onclick="switchFarmerTab('orders')">Manage All Orders &rarr;</button>
+            </div>
+            <div id="homeActiveOrdersList">
+              <!-- Rendered by app.js -->
+            </div>
+          </div>
+
+          <!-- Earnings Card -->
+          <div class="dashboard-card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <h3 style="font-weight: 800; font-size: 1.15rem;" data-i18n="earningsPayments">Earnings &amp; Payments</h3>
+                <div style="font-size: 1.6rem; font-weight: 800; color: #15803d; margin-top: 0.25rem;" data-i18n="totalEarnings">Total: ₹15,400</div>
+                <div style="font-size: 0.82rem; color: #64748b;" data-i18n="lastPayoutDetail">Last Payout: 5/2, 2026 - ₹13,05,400</div>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="switchFarmerTab('account')">
+                <span data-i18n="viewDetails">View Details &gt;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FARMER TAB 2: PRODUCE -->
+        <div id="farmerTabProduce" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div>
+              <h2 style="font-weight: 800; color: #14532d;" data-i18n="produceTitle">Harvest Catalog &amp; Inventory Control</h2>
+              <p style="font-size: 0.85rem; color: #64748b;">Manage harvest stock and retail &amp; bulk wholesale rates</p>
+            </div>
+            <button class="btn btn-primary" onclick="openAddProduceModal()">
+              <i data-lucide="plus-circle" style="width: 18px; height: 18px;"></i>
+              <span data-i18n="addNewProduce">Add New Crop Listing</span>
+            </button>
+          </div>
+          <div class="produce-grid-full" id="farmerFullProduceGrid"></div>
+        </div>
+
+        <!-- FARMER TAB 3: FORECAST -->
+        <div id="farmerTabForecast" style="display: none;">
+          <div>
+            <h2 style="font-weight: 800; color: #14532d;" data-i18n="forecastTitle">AI Market Demand &amp; Price Forecasting</h2>
+            <p style="font-size: 0.85rem; color: #64748b;" data-i18n="forecastDesc">Predictive AI intelligence across Koyambedu, Madurai, Azadpur &amp; Nashik Mandis</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1.25rem 0;">
+            <button class="btn btn-primary btn-sm" onclick="renderCropForecast('tomato', this)">Tomato</button>
+            <button class="btn btn-outline btn-sm" onclick="renderCropForecast('onion', this)">Onion</button>
+            <button class="btn btn-outline btn-sm" onclick="renderCropForecast('rice', this)">Basmati Rice</button>
+            <button class="btn btn-outline btn-sm" onclick="renderCropForecast('turmeric', this)">Turmeric</button>
+          </div>
+          <div class="dashboard-card" id="forecastDynamicCard" style="margin-bottom: 1.5rem;"></div>
+          <div class="dashboard-card">
+            <h3 style="font-weight: 800; color: #1e293b; margin-bottom: 0.75rem;">📊 Live Mandi Rates Comparison</h3>
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                <thead>
+                  <tr style="background: #f1f5f9; text-align: left;">
+                    <th style="padding: 0.85rem 1rem;">Mandi</th>
+                    <th style="padding: 0.85rem 1rem;">Current Rate</th>
+                    <th style="padding: 0.85rem 1rem;">7-Day Forecast</th>
+                    <th style="padding: 0.85rem 1rem;">Demand Status</th>
+                    <th style="padding: 0.85rem 1rem;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="mandiRatesTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- FARMER TAB 4: ORDERS -->
+        <div id="farmerTabOrders" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div>
+              <h2 style="font-weight: 800; color: #14532d;">Direct Orders &amp; Dispatch Hub</h2>
+              <p style="font-size: 0.85rem; color: #64748b;">Incoming consumer baskets &amp; bulk procurement contracts</p>
+            </div>
+            <span class="farmer-fpo-badge">🛡️ Buyer Privacy Shield Active</span>
+          </div>
+          <div id="farmerFullOrdersList"></div>
+        </div>
+
+        <!-- FARMER TAB 5: ACCOUNT & PROFILE -->
+        <div id="farmerTabAccount" style="display: none;">
+          <div>
+            <h2 style="font-weight: 800; color: #14532d;">Farmer Profile &amp; Account Details</h2>
+            <p style="font-size: 0.85rem; color: #64748b;">Personal credentials, farm land specifications, and payout bank records</p>
+          </div>
+          <div style="display: grid; grid-template-columns: 320px 1fr; gap: 2rem; margin-top: 1.5rem;">
+            <div class="dashboard-card" style="text-align: center;">
+              <div class="profile-avatar-wrapper" onclick="openEditProfileModal()" title="Click to Change Farmer Photo" style="margin: 0 auto 1rem;">
+                <img id="farmerProfileImg" src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=400&auto=format&fit=crop&q=80" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3.5px solid #15803d; box-shadow: 0 4px 14px rgba(0,0,0,0.12); display: block;" alt="Farmer Profile Photo">
+                <div class="avatar-edit-overlay">📷 Edit</div>
+              </div>
+              <h3 style="font-weight: 800; font-size: 1.3rem;" id="accFarmerName">Ramesh Kumar</h3>
+              <p style="font-size: 0.85rem; color: #64748b;" id="accFarmName">Ramesh Organic Farms &amp; Nursery</p>
+              <div style="margin: 0.75rem 0;">
+                <span class="farmer-fpo-badge">✓ Verified FPO Farmer</span>
+              </div>
+              <div style="font-size: 0.82rem; color: #475569; margin-bottom: 1.5rem;">
+                📍 Pollachi, Coimbatore, Tamil Nadu<br>⭐ <strong>4.9 / 5.0</strong> (128 Reviews)
+              </div>
+              <button class="btn btn-primary" style="width: 100%;" onclick="openEditProfileModal()">
+                <span>👤 Edit Profile &amp; Photo</span>
+              </button>
+            </div>
+
+            <div>
+              <div class="dashboard-card" style="margin-bottom: 1.5rem;">
+                <h3 style="font-weight: 800; margin-bottom: 1rem;">👤 Personal Credentials</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                  <div style="background: #f8fafc; padding: 0.85rem 1rem; border-radius: 12px;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b;">Full Name</div>
+                    <div style="font-size: 1rem; font-weight: 800;" id="accValName">Ramesh Kumar</div>
+                  </div>
+                  <div style="background: #f8fafc; padding: 0.85rem 1rem; border-radius: 12px;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b;">Mobile Number</div>
+                    <div style="font-size: 1rem; font-weight: 800;" id="accValMobile">+91 98765 43210</div>
+                  </div>
+                  <div style="background: #f8fafc; padding: 0.85rem 1rem; border-radius: 12px;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b;">Email Address</div>
+                    <div style="font-size: 1rem; font-weight: 800;" id="accValEmail">ramesh.farmer@kisan.in</div>
+                  </div>
+                  <div style="background: #f8fafc; padding: 0.85rem 1rem; border-radius: 12px;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b;">Farm Location</div>
+                    <div style="font-size: 1rem; font-weight: 800;" id="accValLocation">Pollachi, Coimbatore - 642001</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dashboard-card" style="margin-bottom: 1.5rem;">
+                <h3 style="font-weight: 800; margin-bottom: 1rem;">🌱 Farm &amp; Crop Specifications</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                  <div style="background: #f8fafc; padding: 0.85rem 1rem; border-radius: 12px;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b;">Cultivated Land Area</div>
+                    <div style="font-size: 1rem; font-weight: 800;">4.5 Acres (Owned)</div>
+                  </div>
+                  <div style="background: #f8fafc; padding: 0.85rem 1rem; border-radius: 12px;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b;">FPO Affiliation</div>
+                    <div style="font-size: 1rem; font-weight: 800;">Pollachi Farmers Producer Co. (#TN-402)</div>
+                  </div>
+                  <div style="background: #f8fafc; padding: 0.85rem 1rem; border-radius: 12px;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b;">Soil Health Grade</div>
+                    <div style="font-size: 1rem; font-weight: 800; color: #15803d;">Grade A (High Organic Carbon)</div>
+                  </div>
+                  <div style="background: #f8fafc; padding: 0.85rem 1rem; border-radius: 12px;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b;">Organic Certificate ID</div>
+                    <div style="font-size: 1rem; font-weight: 800;">TN-ORG-2024-88392</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dashboard-card">
+                <h3 style="font-weight: 800; margin-bottom: 1rem;">🏦 Direct Banking &amp; Payout Records</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                  <div style="background: #f8fafc; padding: 0.85rem 1rem; border-radius: 12px;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b;">Bank Name</div>
+                    <div style="font-size: 1rem; font-weight: 800;" id="accValBank">State Bank of India (SBI)</div>
+                  </div>
+                  <div style="background: #f8fafc; padding: 0.85rem 1rem; border-radius: 12px;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b;">Account Number</div>
+                    <div style="font-size: 1rem; font-weight: 800;" id="accValAccount">XXXX-XXXX-4921</div>
+                  </div>
+                  <div style="background: #f8fafc; padding: 0.85rem 1rem; border-radius: 12px;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b;">IFSC Code</div>
+                    <div style="font-size: 1rem; font-weight: 800;">SBIN0001234</div>
+                  </div>
+                  <div style="background: #f8fafc; padding: 0.85rem 1rem; border-radius: 12px;">
+                    <div style="font-size: 0.78rem; font-weight: 700; color: #64748b;">Registered UPI ID</div>
+                    <div style="font-size: 1rem; font-weight: 800;" id="accValUPI">ramesh.farmer@sbi</div>
+                  </div>
+                </div>
+                <div style="background: #e8f5ed; border-radius: 10px; padding: 0.75rem 1rem; display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                  <span style="font-weight: 700; color: #15803d;">Total Direct Consumer Payments Received:</span>
+                  <strong style="font-size: 1.25rem; color: #14532d;">₹2,48,900</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= 3. CONSUMER INTERFACE (WITH TABS, TRACKING & NEAREST FARMS) ================= -->
+    <section id="consumerInterface" style="display: none;">
+      <div class="dashboard-layout-container">
+
+        <!-- Consumer Sub-Navigation Tabs (REQ #7) -->
+        <nav class="subnav-tabs-bar">
+          <button class="subnav-tab-btn active" id="btnConsumerMarket" onclick="switchConsumerTab('market')">
+            <i data-lucide="shopping-bag" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="navMarket">Fresh Market</span>
+          </button>
+          <button class="subnav-tab-btn" id="btnConsumerOrders" onclick="switchConsumerTab('orders')">
+            <i data-lucide="truck" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="navMyOrders">My Orders &amp; Tracking</span>
+          </button>
+          <button class="subnav-tab-btn" id="btnConsumerProfile" onclick="switchConsumerTab('profile')">
+            <i data-lucide="user" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="navConsumerProfile">My Profile &amp; Address</span>
+          </button>
+        </nav>
+
+        <!-- CONSUMER TAB 1: FRESH MARKET & NEAREST FARMS (REQ #4, #9) -->
+        <div id="consumerTabMarket">
+          
+          <!-- Location & Nearest Farmer Filter Bar (REQ #9) -->
+          <div class="location-filter-bar">
+            <div class="location-group">
+              <span style="font-size: 1.3rem;">📍</span>
+              <div>
+                <div style="font-size: 0.75rem; font-weight: 700; color: #166534;" data-i18n="locationSelectorLabel">Your Delivery City / Area:</div>
+                <select id="consumerCitySelect" class="location-select" onchange="onConsumerLocationChange(this.value)">
+                  <option value="Coimbatore">Coimbatore (கோயம்புத்தூர்)</option>
+                  <option value="Pollachi">Pollachi (பொள்ளாச்சி)</option>
+                  <option value="Chennai">Chennai (சென்னை)</option>
+                  <option value="Madurai">Madurai (மதுரை)</option>
+                  <option value="Salem">Salem (சேலம்)</option>
+                  <option value="Erode">Erode (ஈரோடு)</option>
+                  <option value="Tirupur">Tirupur (திருப்பூர்)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="dist-filter-pills">
+              <button class="dist-pill-btn active" id="pillClosest" onclick="toggleSortNearest(true)" data-i18n="closestFirst">Closest Farms First ⚡</button>
+              <button class="dist-pill-btn" id="pillAllFarms" onclick="toggleSortNearest(false)" data-i18n="allFarms">All Verified Farms</button>
+              <button class="dist-pill-btn" onclick="filterOrganicOnly(this)" data-i18n="organicOnly">Organic Only 🌿</button>
+            </div>
+
+            <button class="btn btn-primary btn-sm" onclick="openCartModal()">
+              <i data-lucide="shopping-basket" style="width: 18px; height: 18px;"></i>
+              <span>Basket (<span id="consumerCartCount">0</span>)</span>
+            </button>
+          </div>
+
+          <!-- Produce Grid with Harvest Date and Farmer Distance (REQ #4, #9) -->
+          <div id="consumerMarketGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.5rem;">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- CONSUMER TAB 2: MY ORDERS & LIVE 4-STEP TRACKING (REQ #8) -->
+        <div id="consumerTabOrders" style="display: none;">
+          <div style="margin-bottom: 1.5rem;">
+            <h2 style="font-weight: 800; color: #14532d;" data-i18n="orderTrackingTitle">Live Farm-to-Door Order Tracking</h2>
+            <p style="font-size: 0.85rem; color: #64748b;">Track harvest packing and direct farm delivery in real time</p>
+          </div>
+
+          <!-- Live Visual 4-Step Order Stepper (REQ #8) -->
+          <div class="order-tracking-card" id="liveOrderTrackingCard">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 1rem;">
+              <div>
+                <span style="font-size: 0.78rem; font-weight: 800; color: #15803d; text-transform: uppercase;">ACTIVE LIVE TRACKING</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #0f172a;">Order #ORD-1082</h3>
+                <div style="font-size: 0.85rem; color: #64748b;">
+                  Items: <strong>Fresh Farm Tomatoes (10 kg)</strong> &bull; Total: <strong>₹280</strong>
+                </div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 0.78rem; color: #64748b;" data-i18n="estimatedArrival">Estimated Arrival</div>
+                <div style="font-size: 1.15rem; font-weight: 800; color: #15803d;">Today, 4:30 PM (Fresh Harvest)</div>
+                <div class="farm-distance-pill">📍 2.4 km from Pollachi Farm</div>
+              </div>
+            </div>
+
+            <!-- Visual 4-Step Timeline Stepper -->
+            <div class="stepper-timeline">
+              <div class="stepper-progress-fill" id="trackingProgressLine" style="width: 50%;"></div>
+
+              <!-- Step 1 -->
+              <div class="stepper-node completed" id="stepNode1">
+                <div class="stepper-circle">🌾</div>
+                <div class="stepper-label" data-i18n="orderStatus_Placed">Order Placed &amp; Paid to Farmer</div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="stepper-node completed" id="stepNode2">
+                <div class="stepper-circle">📦</div>
+                <div class="stepper-label" data-i18n="orderStatus_Packed">Harvested &amp; Packed by Farmer</div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="stepper-node active" id="stepNode3">
+                <div class="stepper-circle">🚚</div>
+                <div class="stepper-label" data-i18n="orderStatus_Out">Out for Direct Farm Delivery</div>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="stepper-node" id="stepNode4">
+                <div class="stepper-circle">🏡</div>
+                <div class="stepper-label" data-i18n="orderStatus_Delivered">Delivered Fresh</div>
+              </div>
+            </div>
+
+            <!-- Farmer Contact & Direct Call -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <div style="width: 44px; height: 44px; border-radius: 50%; background: #15803d; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.4rem;">👨‍🌾</div>
+                <div>
+                  <div style="font-weight: 800; color: #0f172a;">Farmer Ramesh Kumar</div>
+                  <div style="font-size: 0.8rem; color: #15803d; font-weight: 600;">Direct Farm Dispatch &bull; Pollachi Farm</div>
+                </div>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button class="btn btn-outline btn-sm" onclick="showToast('Calling Farmer Ramesh (+91 98765 43210)...', 'info')" data-i18n="callFarmer">
+                  <i data-lucide="phone" style="width: 14px; height: 14px;"></i>
+                  <span>Call Farmer</span>
+                </button>
+                <button class="btn btn-primary btn-sm" onclick="advanceTrackingSimulation()">Simulate Next Step &rarr;</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Past Orders Table -->
+          <div class="dashboard-card">
+            <h3 style="font-weight: 800; margin-bottom: 1rem;">Past Orders History</h3>
+            <div id="consumerPastOrdersList"></div>
+          </div>
+        </div>
+
+        <!-- CONSUMER TAB 3: PROFILE & SAVED ADDRESS (WITH PHOTO EDITING) -->
+        <div id="consumerTabProfile" style="display: none;">
+          <div class="dashboard-card" style="max-width: 700px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+              <div class="profile-avatar-wrapper" onclick="document.getElementById('consumerPhotoFile').click()" title="Click to Change Consumer Photo" style="margin: 0 auto 0.75rem;">
+                <img id="consumerProfileImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3.5px solid #15803d; box-shadow: 0 4px 14px rgba(0,0,0,0.12); display: block;" alt="Consumer Profile Photo">
+                <div class="avatar-edit-overlay">📷 Edit</div>
+              </div>
+              <h3 style="font-weight: 800; font-size: 1.3rem; margin: 0;" id="consumerDisplayName">Ananya S.</h3>
+              <p style="font-size: 0.85rem; color: #64748b; margin: 0.2rem 0 0 0;">Verified Direct Farm Produce Consumer 🛡️</p>
+            </div>
+
+            <!-- Consumer Photo Editor Box -->
+            <div style="background: #f8fafc; border: 1.5px dashed #86efac; border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem;">
+              <label style="font-weight: 700; color: #14532d; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;">
+                <span>📸</span>
+                <span>Change Consumer Profile Photo / சுயவிவர படம்</span>
+              </label>
+
+              <input type="file" id="consumerPhotoFile" accept="image/*" onchange="handleConsumerPhotoSelected(event)" style="display: none;">
+              
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <button type="button" class="btn btn-outline" style="flex: 1; border-color: #15803d; color: #15803d; background: #fff; font-size: 0.85rem; font-weight: 700;" onclick="document.getElementById('consumerPhotoFile').click()">
+                  📁 Choose Photo from Device / Camera
+                </button>
+              </div>
+
+              <input type="url" id="consumerPhotoUrl" class="form-control" style="font-size: 0.82rem; background: #fff;" placeholder="Or paste photo URL (https://...)" oninput="handleConsumerPhotoUrlInput(this.value)">
+
+              <!-- 1-Click Consumer Presets -->
+              <div style="margin-top: 0.75rem;">
+                <div style="font-size: 0.75rem; font-weight: 700; color: #14532d; margin-bottom: 0.35rem;">Or Pick 1-Click Profile Avatar Preset:</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+                  <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectConsumerPreset('ananya')">👩‍💼 Professional (Ananya)</button>
+                  <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectConsumerPreset('priya')">👩 Priya (Homemaker)</button>
+                  <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectConsumerPreset('karthik')">👨 Karthik (Foodie)</button>
+                  <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectConsumerPreset('dr_meena')">👩‍⚕️ Dr. Meena (Nutritionist)</button>
+                </div>
+              </div>
+
+              <div id="consumerPhotoPreviewBox" style="margin-top: 0.75rem; text-align: center; display: none; background: #fff; border: 1.5px solid #86efac; border-radius: 10px; padding: 0.5rem;">
+                <img id="consumerPhotoPreviewImg" src="" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin: 0 auto;" alt="Preview">
+                <div style="font-size: 0.75rem; color: #15803d; font-weight: 700; margin-top: 0.25rem;">✓ New Photo Ready to Save</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label style="font-weight: 700;">Full Name</label>
+              <input type="text" id="consumerProfileName" class="form-control" value="Ananya S.">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div class="form-group">
+                <label style="font-weight: 700;">Mobile Number</label>
+                <input type="tel" id="consumerProfileMobile" class="form-control" value="+91 98401 23456">
+              </div>
+              <div class="form-group">
+                <label style="font-weight: 700;">City / Location</label>
+                <input type="text" id="consumerProfileCity" class="form-control" value="Coimbatore">
+              </div>
+            </div>
+            <div class="form-group">
+              <label style="font-weight: 700;">Default Farm-to-Door Delivery Address</label>
+              <textarea id="consumerProfileAddress" class="form-control" rows="3">42, Green Avenue, Anna Nagar, Coimbatore - 641001</textarea>
+            </div>
+            <div style="background: #e8f5ed; border-radius: 12px; padding: 1rem; margin: 1rem 0;">
+              <div style="font-weight: 800; color: #15803d; margin-bottom: 0.25rem;">💰 Your Direct Farm Savings: ₹1,420</div>
+              <div style="font-size: 0.82rem; color: #166534;">By eliminating middlemen commissions, you save 25-35% on fresh vegetables while farmers earn 100% fair price!</div>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; font-size: 1rem; padding: 0.75rem;" onclick="handleSaveConsumerProfile()">Save Profile &amp; Photo</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= 4. BULK BUYER INTERFACE (WITH SUB-TABS) ================= -->
+    <section id="bulkBuyerInterface" style="display: none;">
+      <div class="dashboard-layout-container">
+
+        <!-- Bulk Buyer Sub-Navigation Tabs (REQ #7) -->
+        <nav class="subnav-tabs-bar">
+          <button class="subnav-tab-btn b2b-tab active" id="btnBulkLots" onclick="switchBulkTab('lots')">
+            <i data-lucide="truck" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="navLots">Wholesale Lots</span>
+          </button>
+          <button class="subnav-tab-btn b2b-tab" id="btnBulkBids" onclick="switchBulkTab('bids')">
+            <i data-lucide="file-text" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="navBids">My RFQs &amp; Tenders</span>
+          </button>
+          <button class="subnav-tab-btn b2b-tab" id="btnBulkOrders" onclick="switchBulkTab('orders')">
+            <i data-lucide="package" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="navBulkOrders">B2B Orders</span>
+          </button>
+          <button class="subnav-tab-btn b2b-tab" id="btnBulkProfile" onclick="switchBulkTab('profile')">
+            <i data-lucide="building" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="navCompanyProfile">Company Profile</span>
+          </button>
+        </nav>
+
+        <!-- BULK TAB 1: WHOLESALE LOTS -->
+        <div id="bulkTabLots">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 800; color: #312e81;">🏢 B2B Bulk Agricultural Procurement</h2>
+              <p style="color: #64748b;">Direct farm sourcing in metric tonnes and quintals with zero APMC markups</p>
+            </div>
+            <button class="btn btn-primary" style="background: #4338ca;" onclick="openCreateRFQModal()">
+              <i data-lucide="file-plus" style="width: 18px; height: 18px;"></i>
+              <span>Post New RFQ / Tender</span>
+            </button>
+          </div>
+          <div id="bulkLotsMarketGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.5rem;"></div>
+        </div>
+
+        <!-- BULK TAB 2: MY BIDS & RFQS -->
+        <div id="bulkTabBids" style="display: none;">
+          <div class="dashboard-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <div>
+                <h3 style="font-weight: 800; color: #312e81;">📋 Active Tenders &amp; Farmer Proposals</h3>
+                <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Manage your posted requirements and direct farm quotations</p>
+              </div>
+              <button class="btn btn-primary" style="background: #4338ca;" onclick="openCreateRFQModal()">
+                <i data-lucide="file-plus" style="width: 16px; height: 16px;"></i>
+                <span>+ Post New RFQ</span>
+              </button>
+            </div>
+            <div id="bulkTendersList"></div>
+          </div>
+
+          <!-- AI Engine: Farmer Matching for RFQs (Diagram: AI Engine -> Requirement Matching) -->
+          <div class="dashboard-card" style="margin-top: 1.5rem; border: 1.5px solid #c7d2fe; background: linear-gradient(180deg, #f5f3ff 0%, #ffffff 100%);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="font-size: 1.3rem;">🤖</span>
+                  <h3 style="font-weight: 800; color: #312e81;">AI Engine: Requirement &amp; Farmer Matching</h3>
+                  <span class="farmer-fpo-badge" style="background: #e0e7ff; color: #4338ca;">Live AI Matcher</span>
+                </div>
+                <p style="font-size: 0.85rem; color: #64748b; margin: 0.25rem 0 0 0;">
+                  Automatically matches your B2B requirements against active farmer harvests based on distance, quantity, quality grade, and wholesale pricing.
+                </p>
+              </div>
+              <button class="btn btn-outline btn-sm" onclick="runAIMatchingScan()">
+                <i data-lucide="refresh-cw" style="width: 14px; height: 14px;"></i>
+                <span>Re-scan Farmers</span>
+              </button>
+            </div>
+            <div id="aiFarmerMatchingList" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1rem;"></div>
+          </div>
+        </div>
+
+        <!-- BULK TAB 3: B2B ORDERS & SMART LOGISTICS -->
+        <div id="bulkTabOrders" style="display: none;">
+          <div class="dashboard-card">
+            <h3 style="font-weight: 800; color: #312e81; margin-bottom: 1rem;">📦 B2B Truckload Logistics &amp; Orders</h3>
+            <div id="bulkOrdersList"></div>
+          </div>
+
+          <!-- Smart Logistics: Order Aggregation & Route Optimization (Diagram: Smart Logistics) -->
+          <div class="dashboard-card" style="margin-top: 1.5rem; border: 1.5px solid #cbd5e1; background: #ffffff;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+              <div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="font-size: 1.3rem;">🚚</span>
+                  <h3 style="font-weight: 800; color: #1e293b;">Smart Logistics: Aggregation &amp; Route Optimization</h3>
+                  <span class="farmer-fpo-badge" style="background: #dcfce7; color: #15803d;">AI Optimized Route</span>
+                </div>
+                <p style="font-size: 0.85rem; color: #64748b; margin: 0.25rem 0 0 0;">
+                  Automated farm-gate collection, multi-lot aggregation, and transit scheduling for zero-wastage supply chains.
+                </p>
+              </div>
+              <span style="font-size: 0.85rem; font-weight: 700; color: #15803d; background: #f0fdf4; padding: 6px 12px; border-radius: 8px; border: 1px solid #bbf7d0;">
+                🌱 28% Carbon &amp; Fuel Savings
+              </span>
+            </div>
+
+            <!-- Smart Logistics 3 Pillars -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem;">
+                <div style="font-weight: 800; color: #0f172a; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="background: #e2e8f0; border-radius: 6px; padding: 2px 6px;">📦</span>
+                  <span>1. Order Aggregation</span>
+                </div>
+                <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 0.5rem;">
+                  Consolidating 3 nearby farm harvests in Pollachi &amp; Coimbatore into 1 full 10-Tonne Eicher truckload.
+                </p>
+                <div style="font-size: 0.78rem; font-weight: 700; color: #15803d;">Status: Consolidated (100% capacity utilized)</div>
+              </div>
+
+              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem;">
+                <div style="font-weight: 800; color: #0f172a; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="background: #e2e8f0; border-radius: 6px; padding: 2px 6px;">⏱️</span>
+                  <span>2. Pickup Scheduling</span>
+                </div>
+                <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 0.5rem;">
+                  Farm 1 (Pollachi): 06:00 AM &bull; Farm 2 (Thondamuthur): 07:30 AM &bull; Mandi Dispatch: 09:00 AM.
+                </p>
+                <div style="font-size: 0.78rem; font-weight: 700; color: #2563eb;">Status: Scheduled for Tomorrow 06:00 AM</div>
+              </div>
+
+              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem;">
+                <div style="font-weight: 800; color: #0f172a; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="background: #e2e8f0; border-radius: 6px; padding: 2px 6px;">🛣️</span>
+                  <span>3. Route Optimization</span>
+                </div>
+                <p style="font-size: 0.82rem; color: #64748b; margin-bottom: 0.5rem;">
+                  AI dynamic shortest corridor via NH544 with minimal tolls and live cold-chain telemetry.
+                </p>
+                <div style="font-size: 0.78rem; font-weight: 700; color: #7c3aed;">Route: Pollachi ➔ Coimbatore ➔ Chennai (485 km)</div>
+              </div>
+            </div>
+
+            <!-- Route Visual Stepper -->
+            <div style="background: #f1f5f9; border-radius: 12px; padding: 1.25rem;">
+              <div style="font-weight: 800; font-size: 0.9rem; color: #334155; margin-bottom: 1rem;">📍 Live Optimal Dispatch Route Plan:</div>
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <div style="width: 36px; height: 36px; border-radius: 50%; background: #15803d; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800;">1</div>
+                  <div>
+                    <div style="font-weight: 700; font-size: 0.85rem;">Farm Gate (Pollachi)</div>
+                    <div style="font-size: 0.75rem; color: #64748b;">Harvest Loading (500 kg)</div>
+                  </div>
+                </div>
+                <div style="color: #94a3b8; font-weight: 800;">➔</div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <div style="width: 36px; height: 36px; border-radius: 50%; background: #2563eb; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800;">2</div>
+                  <div>
+                    <div style="font-weight: 700; font-size: 0.85rem;">Coimbatore Hub</div>
+                    <div style="font-size: 0.75rem; color: #64748b;">Aggregation &amp; Quality QA</div>
+                  </div>
+                </div>
+                <div style="color: #94a3b8; font-weight: 800;">➔</div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <div style="width: 36px; height: 36px; border-radius: 50%; background: #4338ca; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800;">3</div>
+                  <div>
+                    <div style="font-weight: 700; font-size: 0.85rem;">Wholesale Terminal</div>
+                    <div style="font-size: 0.75rem; color: #64748b;">Direct Unloading &amp; Payment</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- BULK TAB 4: COMPANY PROFILE (WITH LOGO EDITING) -->
+        <div id="bulkTabProfile" style="display: none;">
+          <div class="dashboard-card" style="max-width: 700px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+              <div class="profile-avatar-wrapper" onclick="document.getElementById('bulkLogoFile').click()" title="Click to Change Company Logo" style="margin: 0 auto 0.75rem;">
+                <img id="bulkBuyerProfileImg" src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=400&auto=format&fit=crop&q=80" style="width: 100px; height: 100px; border-radius: 16px; object-fit: cover; border: 3.5px solid #4338ca; box-shadow: 0 4px 14px rgba(0,0,0,0.12); display: block;" alt="Company Logo">
+                <div class="avatar-edit-overlay" style="border-radius: 16px;">🏢 Logo</div>
+              </div>
+              <h3 style="font-weight: 800; font-size: 1.3rem; margin: 0; color: #312e81;" id="bulkCompanyDisplayName">Agro Wholesale Traders Pvt Ltd</h3>
+              <p style="font-size: 0.85rem; color: #64748b; margin: 0.2rem 0 0 0;">Verified Bulk Mandi Procurement Enterprise 🏢</p>
+            </div>
+
+            <!-- Company Logo Editor Box -->
+            <div style="background: #f5f3ff; border: 1.5px dashed #c7d2fe; border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem;">
+              <label style="font-weight: 700; color: #312e81; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;">
+                <span>🏢</span>
+                <span>Change Company Logo / நிறுவன லோகோ</span>
+              </label>
+
+              <input type="file" id="bulkLogoFile" accept="image/*" onchange="handleBulkLogoSelected(event)" style="display: none;">
+              
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <button type="button" class="btn btn-outline" style="flex: 1; border-color: #4338ca; color: #4338ca; background: #fff; font-size: 0.85rem; font-weight: 700;" onclick="document.getElementById('bulkLogoFile').click()">
+                  📁 Choose Logo from Device / Camera
+                </button>
+              </div>
+
+              <input type="url" id="bulkLogoUrl" class="form-control" style="font-size: 0.82rem; background: #fff;" placeholder="Or paste logo URL (https://...)" oninput="handleBulkLogoUrlInput(this.value)">
+
+              <!-- 1-Click Company Logo Presets -->
+              <div style="margin-top: 0.75rem;">
+                <div style="font-size: 0.75rem; font-weight: 700; color: #312e81; margin-bottom: 0.35rem;">Or Pick 1-Click Business Logo Preset:</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+                  <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectBulkPreset('agro_corp')">🌾 Agro Wholesale Corp</button>
+                  <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectBulkPreset('mandi_hub')">🚛 Mandi Logistics Hub</button>
+                  <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectBulkPreset('spice_traders')">🌶️ Southern Spices Ltd</button>
+                  <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectBulkPreset('bharat_grain')">🍚 Bharat Grains Traders</button>
+                </div>
+              </div>
+
+              <div id="bulkLogoPreviewBox" style="margin-top: 0.75rem; text-align: center; display: none; background: #fff; border: 1.5px solid #c7d2fe; border-radius: 10px; padding: 0.5rem;">
+                <img id="bulkLogoPreviewImg" src="" style="width: 70px; height: 70px; border-radius: 12px; object-fit: cover; margin: 0 auto;" alt="Logo Preview">
+                <div style="font-size: 0.75rem; color: #4338ca; font-weight: 700; margin-top: 0.25rem;">✓ New Logo Ready to Save</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label style="font-weight: 700;">Company Name</label>
+              <input type="text" id="bulkCompanyName" class="form-control" value="Agro Wholesale Traders Pvt Ltd">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div class="form-group">
+                <label style="font-weight: 700;">GSTIN</label>
+                <input type="text" id="bulkGSTIN" class="form-control" value="33AAACA1234B1Z5" readonly>
+              </div>
+              <div class="form-group">
+                <label style="font-weight: 700;">Business Type</label>
+                <input type="text" id="bulkBusinessType" class="form-control" value="Wholesale Mandi Procurement" readonly>
+              </div>
+            </div>
+            <div class="form-group">
+              <label style="font-weight: 700;">Mandi Delivery Warehouse</label>
+              <input type="text" id="bulkWarehouse" class="form-control" value="Plot 44, Koyambedu Wholesale Market Complex, Chennai - 600092">
+            </div>
+            <button class="btn btn-primary" style="background: #4338ca; width: 100%; font-size: 1rem; padding: 0.75rem;" onclick="handleSaveBulkProfile()">Save Company Profile &amp; Logo</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= CHATBOT WITH VOICE ASSISTANT (REQ #5) ================= -->
+  <button class="floating-chatbot-btn" onclick="toggleChatbot()">
+    <span>🌾</span>
+    <span data-i18n="chatbotTitle">Mann Mithra AI &amp; Chat</span>
+  </button>
+
+  <div class="chatbot-drawer" id="chatbotDrawer">
+    <div class="chatbot-header">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span>🌾</span>
+        <div>
+          <div style="font-size: 0.95rem; font-weight: 800;">Mann Mithra Connect</div>
+          <div style="font-size: 0.72rem; opacity: 0.9;">AI Agri Doctor &amp; Voice Assistant</div>
+        </div>
+      </div>
+      <button onclick="toggleChatbot()" style="background:none; border:none; color:#fff; font-size:1.2rem; cursor:pointer;">&times;</button>
+    </div>
+
+    <div class="chatbot-tabs">
+      <button class="chat-tab-btn active" id="chatTabAI" onclick="switchChatTab('ai')">🌾 AI Agri Assistant</button>
+      <button class="chat-tab-btn" id="chatTabDirect" onclick="switchChatTab('direct')">💬 Direct Messages</button>
+    </div>
+
+    <!-- VOICE ASSISTANT MICROPHONE BAR (REQ #5) -->
+    <div class="voice-assistant-row">
+      <div style="display: flex; align-items: center; gap: 0.6rem;">
+        <button type="button" class="voice-mic-btn" id="voiceMicBtn" onclick="toggleVoiceAssistant()" title="Click to Speak in Tamil or English">
+          <i data-lucide="mic" style="width: 18px; height: 18px;"></i>
+        </button>
+        <div>
+          <div style="font-size: 0.8rem; font-weight: 800; color: #166534;" id="voiceStatusTitle" data-i18n="voiceAssistantBtn">Voice Assistant</div>
+          <div style="font-size: 0.72rem; color: #475569;" id="voiceStatusSubtitle">Click mic to speak in Tamil or English</div>
+        </div>
+      </div>
+      <span class="farmer-fpo-badge" style="background:#fff; color:#15803d; font-size:0.7rem;">🎤 Web Speech AI</span>
+    </div>
+
+    <!-- Chat Messages Body -->
+    <div class="chatbot-messages-body" id="chatMessagesBody">
+      <div class="chat-bubble bot">
+        👋 Welcome to <strong>Mann Mithra AI</strong>! You can type your question or click the 🎤 <strong>Voice Assistant</strong> to speak in Tamil or English for instant crop disease remedies and live mandi rates.
+      </div>
+    </div>
+
+    <!-- Quick Prompt Chips -->
+    <div class="chatbot-quick-chips">
+      <button class="quick-chip" onclick="sendQuickPrompt('Today Tomato Mandi Price in Tamil Nadu')">🍅 Tomato Mandi Rate</button>
+      <button class="quick-chip" onclick="sendQuickPrompt('Tomato leaf curl remedy (தக்காளி இலை சுருட்டல் மருந்து)')">🌿 Leaf Curl Remedy</button>
+      <button class="quick-chip" onclick="sendQuickPrompt('How to buy 500kg Basmati direct from Punjab farmer?')">🌾 Bulk Rice Order</button>
+    </div>
+
+    <!-- Chat Input Bar -->
+    <form class="chatbot-input-bar" onsubmit="handleChatSubmit(event)">
+      <input type="text" id="chatInputText" placeholder="Ask AI or speak via mic..." autocomplete="off">
+      <button type="submit">
+        <i data-lucide="send" style="width: 16px; height: 16px;"></i>
+      </button>
+    </form>
+  </div>
+
+  <!-- DIRECT FARMER PAYMENT & CHECKOUT MODAL (REQ #2) -->
+  <div id="cartModal" class="dashboard-card" style="display: none; position: fixed; inset: 20px; max-width: 500px; margin: auto; z-index: 2000; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+      <h3 style="font-weight: 800; color: #14532d;">🛒 Consumer Basket &amp; Direct Payment</h3>
+      <button onclick="closeModal('cartModal')" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+    </div>
+
+    <div id="cartModalItems"></div>
+
+    <!-- DIRECT PAYMENT TO FARMER NOTICE (REQ #2) -->
+    <div class="direct-pay-box">
+      <span style="font-size: 1.5rem;">🏦</span>
+      <div>
+        <div style="font-weight: 800; font-size: 0.85rem; color: #166534;" data-i18n="directToFarmer">Direct Payment to Farmer</div>
+        <div style="font-size: 0.76rem; color: #475569;" data-i18n="directPayNotice">
+          100% of your payment is transferred directly to the farmer's bank account with zero middlemen commission.
+        </div>
+      </div>
+    </div>
+
+    <div style="background: #f8fafc; border-radius: 10px; padding: 0.85rem; margin: 0.75rem 0; font-size: 0.85rem;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+        <span style="color: #64748b;">Farmer Payout:</span>
+        <strong style="color: #15803d;">Ramesh Kumar (SBI A/c XXXX4921)</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between;">
+        <span style="color: #64748b;">Farmer UPI:</span>
+        <strong style="color: #15803d;">ramesh.farmer@sbi</strong>
+      </div>
+    </div>
+
+    <div style="margin-top: 1rem; border-top: 1px solid #e2e8f0; padding-top: 0.5rem;">
+      <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.25rem;">
+        <span>Total Amount:</span>
+        <span id="cartModalTotal" style="color: #15803d;">₹0</span>
+      </div>
+      <button class="btn btn-primary" style="width: 100%; margin-top: 1rem; font-size: 1.05rem;" onclick="openCheckoutPaymentModal('consumer')">
+        Proceed to Payment Options (Online / COD / Card) &rarr;
+      </button>
+    </div>
+  </div>
+
+  <!-- Add Produce Modal (With Required Photo Upload, Presets & Live Preview) -->
+  <div id="addProduceModal" class="dashboard-card" style="display: none; position: fixed; inset: 20px; max-width: 520px; max-height: 90vh; overflow-y: auto; margin: auto; z-index: 2000; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.75rem;">
+      <div>
+        <h3 style="font-weight: 800; color: #14532d; margin: 0;">🌱 Add New Crop Listing</h3>
+        <p style="font-size: 0.8rem; color: #64748b; margin: 0.2rem 0 0 0;">Upload your crop photo to showcase on front market cards</p>
+      </div>
+      <button onclick="closeModal('addProduceModal')" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;">&times;</button>
+    </div>
+    
+    <form onsubmit="handleQuickAddProduce(event)">
+      <!-- Crop Name -->
+      <div class="form-group">
+        <label style="font-weight: 700;">Crop Name / பயிர் பெயர் *</label>
+        <input type="text" id="addCropName" class="form-control" placeholder="e.g. Fresh Red Farm Tomatoes (Grade A)" required>
+      </div>
+
+      <!-- Category & Harvest Date -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+        <div class="form-group">
+          <label style="font-weight: 700;">Category</label>
+          <select id="addCropCategory" class="form-control">
+            <option value="vegetables">Vegetables / காய்கறிகள்</option>
+            <option value="fruits">Fruits / பழங்கள்</option>
+            <option value="grains">Grains &amp; Cereals / தானியங்கள்</option>
+            <option value="spices">Spices &amp; Herbs / மசாலாக்கள்</option>
+            <option value="pulses">Pulses &amp; Dal / பருப்பு வகைகள்</option>
+            <option value="organic">Organic Specials / இயற்கை விளைபொருள்</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label style="font-weight: 700;">Harvest Date / அறுவடை நாள்</label>
+          <input type="text" id="addCropHarvestDate" class="form-control" value="Today (Fresh Farm Picked)">
+        </div>
+      </div>
+
+      <!-- Quantity & Retail Price -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+        <div class="form-group">
+          <label style="font-weight: 700;">Quantity Available (kg) *</label>
+          <input type="number" id="addCropQty" class="form-control" placeholder="500" required>
+        </div>
+        <div class="form-group">
+          <label style="font-weight: 700;">Consumer Retail Rate (₹/kg) *</label>
+          <input type="number" id="addCropPrice" class="form-control" placeholder="28" required>
+        </div>
+      </div>
+
+      <!-- Wholesale Rate -->
+      <div class="form-group">
+        <label style="font-weight: 700;">Wholesale Bulk Rate (₹/kg) for B2B Lots</label>
+        <input type="number" id="addCropBulkPrice" class="form-control" placeholder="22">
+        <span style="font-size: 0.75rem; color: #64748b;">Discounted rate for bulk buyers purchasing &gt;100 kg</span>
+      </div>
+
+      <!-- PRODUCT PHOTO / IMAGE SECTION (USER REQUIREMENT #1) -->
+      <div class="form-group" style="background: #f0fdf4; border: 1.5px dashed #86efac; border-radius: 12px; padding: 1rem; margin-top: 0.75rem;">
+        <label style="font-weight: 800; color: #14532d; display: flex; align-items: center; gap: 0.4rem;">
+          <span>📸</span>
+          <span>Crop Photo (Displayed on Front Market Cards) *</span>
+        </label>
+        <p style="font-size: 0.78rem; color: #166534; margin: 0.2rem 0 0.6rem 0;">
+          Upload a clear photo of your produce. This exact image will appear on the front card across Consumer &amp; Wholesale markets!
+        </p>
+
+        <!-- Hidden file input -->
+        <input type="file" id="addCropImageFile" accept="image/*" onchange="handleCropImageFileSelected(event)" style="display: none;">
+
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+          <button type="button" class="btn btn-outline" style="flex: 1; border-color: #15803d; color: #15803d; background: #ffffff; font-weight: 700; font-size: 0.85rem;" onclick="document.getElementById('addCropImageFile').click()">
+            📁 Choose Photo / Camera
+          </button>
+        </div>
+
+        <input type="url" id="addCropImageUrl" class="form-control" style="font-size: 0.82rem; background: #ffffff;" placeholder="Or paste direct image URL (https://...)" oninput="handleCropImageUrlInput(this.value)">
+
+        <!-- Quick Produce Presets -->
+        <div style="margin-top: 0.75rem;">
+          <div style="font-size: 0.75rem; font-weight: 700; color: #14532d; margin-bottom: 0.35rem;">Or Pick 1-Click Produce Photo Preset:</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+            <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectCropPreset('tomato')">🍅 Tomatoes</button>
+            <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectCropPreset('onion')">🧅 Onions</button>
+            <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectCropPreset('potato')">🥔 Potatoes</button>
+            <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectCropPreset('carrot')">🥕 Carrots</button>
+            <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectCropPreset('chilli')">🌶️ Chillies</button>
+            <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectCropPreset('rice')">🌾 Basmati Rice</button>
+            <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectCropPreset('turmeric')">🫚 Turmeric</button>
+            <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectCropPreset('banana')">🍌 Bananas</button>
+            <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectCropPreset('mango')">🥭 Mango</button>
+            <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectCropPreset('coconut')">🥥 Coconut</button>
+          </div>
+        </div>
+
+        <!-- Live Image Preview Box -->
+        <div id="addCropImagePreviewBox" style="margin-top: 0.75rem; text-align: center; display: none; background: #ffffff; border: 1.5px solid #86efac; border-radius: 12px; padding: 0.6rem;">
+          <img id="cropImagePreviewImg" src="" style="max-height: 140px; max-width: 100%; border-radius: 8px; object-fit: cover; box-shadow: 0 4px 12px rgba(0,0,0,0.08);" alt="Crop Photo Preview">
+          <div style="font-size: 0.8rem; color: #15803d; font-weight: 700; margin-top: 0.35rem;">
+            ✓ Product Photo Selected &amp; Ready for Front Card Display
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.25rem;">
+        <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1rem; padding: 0.75rem;">
+          Publish to Market with Photo &rarr;
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Post New RFQ / Tender Modal (Bulk Buyer) -->
+  <div id="createRFQModal" class="dashboard-card" style="display: none; position: fixed; inset: 20px; max-width: 520px; max-height: 90vh; overflow-y: auto; margin: auto; z-index: 2000; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.75rem;">
+      <div>
+        <h3 style="font-weight: 800; color: #312e81; margin: 0;">📋 Post Wholesale RFQ / Tender</h3>
+        <p style="font-size: 0.8rem; color: #64748b; margin: 0.2rem 0 0 0;">Publish high-volume procurement tenders directly to farmers &amp; FPOs</p>
+      </div>
+      <button onclick="closeModal('createRFQModal')" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;">&times;</button>
+    </div>
+
+    <form onsubmit="handleCreateRFQ(event)">
+      <div class="form-group">
+        <label style="font-weight: 700;">Commodity / Crop Needed *</label>
+        <input type="text" id="rfqCropName" class="form-control" placeholder="e.g. Fresh Farm Tomatoes or Basmati Rice 1121" required>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+        <div class="form-group">
+          <label style="font-weight: 700;">Target Volume (kg / Quintals) *</label>
+          <input type="text" id="rfqVolume" class="form-control" placeholder="e.g. 5000 kg (50 Quintals)" required>
+        </div>
+        <div class="form-group">
+          <label style="font-weight: 700;">Target Offer Rate (₹/kg) *</label>
+          <input type="number" id="rfqTargetPrice" class="form-control" placeholder="22" required>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+        <div class="form-group">
+          <label style="font-weight: 700;">Delivery Mandi / Hub *</label>
+          <input type="text" id="rfqLocation" class="form-control" value="Koyambedu Wholesale Terminal, Chennai" required>
+        </div>
+        <div class="form-group">
+          <label style="font-weight: 700;">Required Delivery Date</label>
+          <input type="date" id="rfqDueDate" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label style="font-weight: 700;">Quality Standards / Packaging Notes</label>
+        <textarea id="rfqNotes" class="form-control" rows="2" placeholder="e.g. Grade A, Moisture &lt;10%, 50kg gunny bags required"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="background: #4338ca; width: 100%; font-size: 1rem; padding: 0.75rem;">
+        Publish Tender to Registered Farmers &rarr;
+      </button>
+    </form>
+  </div>
+
+  <!-- Edit Farmer Profile Modal (With Photo Upload & Presets) -->
+  <div id="editProfileModal" class="dashboard-card" style="display: none; position: fixed; inset: 20px; max-width: 520px; max-height: 90vh; overflow-y: auto; margin: auto; z-index: 2000; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.75rem;">
+      <div>
+        <h3 style="font-weight: 800; color: #14532d; margin: 0;">👤 Edit Farmer Profile &amp; Photo</h3>
+        <p style="font-size: 0.8rem; color: #64748b; margin: 0.2rem 0 0 0;">Update your credentials and farmer display avatar</p>
+      </div>
+      <button onclick="closeModal('editProfileModal')" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;">&times;</button>
+    </div>
+
+    <!-- Farmer Photo Editor Section -->
+    <div style="background: #f0fdf4; border: 1.5px dashed #86efac; border-radius: 12px; padding: 1rem; margin-bottom: 1.25rem;">
+      <label style="font-weight: 700; color: #14532d; display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.4rem;">
+        <span>📸</span>
+        <span>Farmer Profile Photo / விவசாயி படம்</span>
+      </label>
+
+      <input type="file" id="farmerPhotoFile" accept="image/*" onchange="handleFarmerPhotoFileSelected(event)" style="display: none;">
+
+      <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+        <button type="button" class="btn btn-outline" style="flex: 1; border-color: #15803d; color: #15803d; background: #fff; font-size: 0.85rem; font-weight: 700;" onclick="document.getElementById('farmerPhotoFile').click()">
+          📁 Choose Photo from Device / Camera
+        </button>
+      </div>
+
+      <input type="url" id="farmerPhotoUrl" class="form-control" style="font-size: 0.82rem; background: #fff;" placeholder="Or paste photo URL (https://...)" oninput="handleFarmerPhotoUrlInput(this.value)">
+
+      <!-- 1-Click Farmer Presets -->
+      <div style="margin-top: 0.75rem;">
+        <div style="font-size: 0.75rem; font-weight: 700; color: #14532d; margin-bottom: 0.35rem;">Or Pick 1-Click Farmer Avatar Preset:</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
+          <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectFarmerPreset('ramesh')">👨‍🌾 South Indian Farmer (Ramesh)</button>
+          <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectFarmerPreset('agritech')">🌾 Modern Agri-Farmer</button>
+          <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectFarmerPreset('organic')">🚜 Organic Specialist</button>
+          <button type="button" class="btn btn-outline btn-sm" style="padding: 3px 8px; font-size: 0.75rem; background:#fff;" onclick="selectFarmerPreset('fpo')">🌱 FPO Leader</button>
+        </div>
+      </div>
+
+      <div id="farmerPhotoPreviewBox" style="margin-top: 0.75rem; text-align: center; display: none; background: #fff; border: 1.5px solid #86efac; border-radius: 10px; padding: 0.5rem;">
+        <img id="farmerPhotoPreviewImg" src="" style="width: 70px; height: 70px; border-radius: 50%; object-fit: cover; margin: 0 auto;" alt="Preview">
+        <div style="font-size: 0.75rem; color: #15803d; font-weight: 700; margin-top: 0.25rem;">✓ New Photo Selected</div>
+      </div>
+    </div>
+
+    <form onsubmit="handleSaveProfile(event)">
+      <div class="form-group">
+        <label style="font-weight: 700;">Full Name</label>
+        <input type="text" id="editName" class="form-control" value="Ramesh Kumar" required>
+      </div>
+      <div class="form-group">
+        <label style="font-weight: 700;">Mobile Number</label>
+        <input type="tel" id="editMobile" class="form-control" value="9876543210" required>
+      </div>
+      <div class="form-group">
+        <label style="font-weight: 700;">Email Address</label>
+        <input type="email" id="editEmail" class="form-control" value="ramesh.farmer@kisan.in" required>
+      </div>
+      <div class="form-group">
+        <label style="font-weight: 700;">Farm Location</label>
+        <input type="text" id="editLocation" class="form-control" value="Pollachi, Coimbatore - 642001" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1rem; padding: 0.75rem;">Save Profile &amp; Photo Changes</button>
+    </form>
+  </div>
+
+  <!-- ================= COMPREHENSIVE MULTI-METHOD PAYMENT MODAL (REQ #1) ================= -->
+  <div id="checkoutPaymentModal" class="dashboard-card" style="display: none; position: fixed; inset: 20px; max-width: 540px; max-height: 90vh; overflow-y: auto; margin: auto; z-index: 2100; box-shadow: 0 25px 60px rgba(0,0,0,0.5);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.75rem;">
+      <div>
+        <h3 style="font-weight: 800; color: #14532d; margin: 0;" id="checkoutModalTitle">💳 Secure Checkout &amp; Direct Farmer Payout</h3>
+        <p style="font-size: 0.8rem; color: #64748b; margin: 0.2rem 0 0 0;">Zero platform cut &bull; 100% goes directly to the farmer</p>
+      </div>
+      <button onclick="closeModal('checkoutPaymentModal')" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;">&times;</button>
+    </div>
+
+    <!-- Payout Beneficiary Badge -->
+    <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; padding: 0.85rem; margin-bottom: 1rem;">
+      <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+        <span style="color: #64748b;">Direct Farmer Beneficiary:</span>
+        <strong id="payModalFarmerName" style="color: #15803d;">Ramesh Kumar</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 0.2rem;">
+        <span style="color: #64748b;">Farmer Bank A/c:</span>
+        <span id="payModalFarmerBank" style="font-weight: 700; color: #0f172a;">SBI A/c XXXX-XXXX-4921</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-top: 0.2rem;">
+        <span style="color: #64748b;">Farmer UPI ID:</span>
+        <span id="payModalFarmerUPI" style="font-weight: 700; color: #15803d;">ramesh.farmer@sbi</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 1.15rem; font-weight: 800; border-top: 1px dashed #bbf7d0; margin-top: 0.5rem; padding-top: 0.5rem;">
+        <span>Total Payable:</span>
+        <span id="payModalTotalAmount" style="color: #15803d;">₹0</span>
+      </div>
+    </div>
+
+    <!-- 3 Payment Method Selectors (USER REQUIREMENT #1) -->
+    <label style="font-weight: 800; font-size: 0.88rem; color: #0f172a;">Choose Payment Method / கட்டண முறையைத் தேர்வுசெய்க:</label>
+    <div class="pay-method-grid">
+      <div class="pay-method-card active" id="payMethodCardOnline" onclick="switchPaymentMethod('online')">
+        <div class="pay-method-icon">📱</div>
+        <div class="pay-method-title">Online UPI</div>
+        <div class="pay-method-sub">GPay / PhonePe / QR</div>
+      </div>
+      <div class="pay-method-card" id="payMethodCardCOD" onclick="switchPaymentMethod('cod')">
+        <div class="pay-method-icon">💵</div>
+        <div class="pay-method-title">Cash on Delivery</div>
+        <div class="pay-method-sub">Pay at Doorstep</div>
+      </div>
+      <div class="pay-method-card" id="payMethodCardCard" onclick="switchPaymentMethod('card')">
+        <div class="pay-method-icon">💳</div>
+        <div class="pay-method-title">Card Details</div>
+        <div class="pay-method-sub">Credit / Debit Card</div>
+      </div>
+    </div>
+
+    <!-- Section 1: Online UPI & Netbanking -->
+    <div id="paySectionOnline" style="background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 1rem; margin-bottom: 1rem;">
+      <div style="font-weight: 700; font-size: 0.85rem; color: #0f172a; margin-bottom: 0.6rem;">Select Instant UPI Payment App:</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.75rem;">
+        <button type="button" class="btn btn-outline btn-sm" style="background:#fff; text-align:left; font-weight:700;" onclick="selectUPIApp('Google Pay')">
+          🔵 Google Pay
+        </button>
+        <button type="button" class="btn btn-outline btn-sm" style="background:#fff; text-align:left; font-weight:700;" onclick="selectUPIApp('PhonePe')">
+          🟣 PhonePe
+        </button>
+        <button type="button" class="btn btn-outline btn-sm" style="background:#fff; text-align:left; font-weight:700;" onclick="selectUPIApp('Paytm')">
+          🔷 Paytm UPI
+        </button>
+        <button type="button" class="btn btn-outline btn-sm" style="background:#fff; text-align:left; font-weight:700;" onclick="selectUPIApp('BHIM UPI')">
+          🇮🇳 BHIM / Any UPI
+        </button>
+      </div>
+      <div class="form-group" style="margin-bottom: 0.25rem;">
+        <label style="font-size: 0.8rem; font-weight: 700;">Your UPI ID (Optional for Direct Request)</label>
+        <input type="text" id="buyerUpiId" class="form-control" placeholder="yourname@okhdfcbank / yourname@paytm">
+      </div>
+      <div style="font-size: 0.75rem; color: #15803d; font-weight: 600; margin-top: 0.4rem;">
+        ✓ Direct zero-fee settlement directly to Farmer's bank account.
+      </div>
+    </div>
+
+    <!-- Section 2: Cash on Delivery (COD) -->
+    <div id="paySectionCOD" style="display: none; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px; padding: 1rem; margin-bottom: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem;">
+        <span style="font-size: 1.25rem;">🌾</span>
+        <strong style="color: #14532d; font-size: 0.95rem;">Cash on Delivery (Doorstep Cash Settlement)</strong>
+      </div>
+      <p style="font-size: 0.82rem; color: #166534; line-height: 1.4; margin: 0.25rem 0 0.5rem 0;">
+        You can pay the full amount in cash directly to the farmer or direct delivery driver upon receiving, inspecting, and weighing the fresh produce.
+      </p>
+      <div style="background: #ffffff; border-radius: 8px; padding: 0.6rem 0.85rem; font-size: 0.8rem; color: #475569;">
+        ✓ Zero advance required &bull; 100% genuine farm fresh guarantee &bull; Exact cash appreciated
+      </div>
+    </div>
+
+    <!-- Section 3: Credit / Debit Card Details -->
+    <div id="paySectionCard" style="display: none; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 1rem; margin-bottom: 1rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <strong style="font-size: 0.88rem; color: #0f172a;">Enter Card Details / கார்டு விவரங்கள்:</strong>
+        <span style="font-size: 0.75rem; color: #15803d; font-weight: 700;">🔒 256-Bit SSL Encrypted</span>
+      </div>
+      <div class="form-group" style="margin-bottom: 0.6rem;">
+        <label style="font-size: 0.8rem; font-weight: 700;">Cardholder Name</label>
+        <input type="text" id="cardHolderName" class="form-control" placeholder="e.g. Ramesh Kumar / Ananya S" value="Ananya S.">
+      </div>
+      <div class="form-group" style="margin-bottom: 0.6rem;">
+        <label style="font-size: 0.8rem; font-weight: 700;">16-Digit Card Number</label>
+        <input type="text" id="cardNumber" class="form-control" placeholder="4532 8920 1142 8821" maxlength="19" oninput="formatCardNumberInput(this)">
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+        <div class="form-group" style="margin-bottom: 0;">
+          <label style="font-size: 0.8rem; font-weight: 700;">Expiry Date (MM/YY)</label>
+          <input type="text" id="cardExpiry" class="form-control" placeholder="08/29" maxlength="5" oninput="formatCardExpiryInput(this)">
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+          <label style="font-size: 0.8rem; font-weight: 700;">CVV / Security Code</label>
+          <input type="password" id="cardCVV" class="form-control" placeholder="•••" maxlength="4">
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirm Button -->
+    <button id="btnConfirmPayment" class="btn btn-primary" style="width: 100%; font-size: 1.05rem; padding: 0.85rem;" onclick="processPaymentSubmission()">
+      Pay Directly to Farmer via Online UPI &rarr;
+    </button>
+  </div>
+
+  <!-- ================= BULK BUYER 20% ADVANCE PAYMENT & PROCUREMENT MODAL (REQ #3) ================= -->
+  <div id="bulkProcureModal" class="dashboard-card" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 92%; max-width: 580px; z-index: 2200; box-shadow: 0 20px 45px rgba(0,0,0,0.35); max-height: 92vh; overflow-y: auto; border: 2px solid #4338ca; border-radius: 16px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.75rem; margin-bottom: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <span style="font-size: 1.4rem;">🏢</span>
+        <h3 style="margin: 0; font-weight: 800; color: #312e81;">B2B Wholesale Lot Procurement</h3>
+      </div>
+      <button onclick="closeModal('bulkProcureModal')" style="background: none; border: none; font-size: 1.4rem; cursor: pointer; color: #64748b;">&times;</button>
+    </div>
+
+    <!-- Lot Summary -->
+    <div style="background: #eef2ff; border-radius: 12px; padding: 1rem; margin-bottom: 1rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+        <h4 id="bulkModalCropName" style="margin: 0; font-weight: 800; color: #1e1b4b; font-size: 1.05rem;">Coimbatore Fresh Farm Tomatoes</h4>
+        <span class="farmer-fpo-badge" style="background: #e0e7ff; color: #4338ca;">Verified Wholesale Lot</span>
+      </div>
+      <div style="font-size: 0.82rem; color: #4338ca; margin-bottom: 0.5rem;">
+        👨‍🌾 Producer: <strong id="bulkModalFarmerName">Ramesh Kumar</strong> &bull; Location: <span id="bulkModalFarmerLocation">Pollachi, Coimbatore</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #475569; border-top: 1px dashed #cbd5e1; padding-top: 0.5rem;">
+        <span>Direct Farm Rate: <strong style="color: #15803d;" id="bulkModalRate">₹22 / kg</strong></span>
+        <span>Lot Availability: <strong id="bulkModalQuantity">500 kg</strong></span>
+      </div>
+    </div>
+
+    <!-- Procurement Quantity Calculator -->
+    <div class="form-group" style="margin-bottom: 1rem;">
+      <label style="font-weight: 700; color: #0f172a;">Procurement Volume (kg)</label>
+      <input type="number" id="bulkOrderVolumeInput" class="form-control" value="500" min="50" step="50" oninput="calculateBulkAdvanceTotals()">
+      <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.25rem;">Minimum wholesale procurement: 50 kg</div>
+    </div>
+
+    <!-- 20% Advance Token Breakdown Card -->
+    <div class="advance-split-card">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-weight: 700; color: #475569;">Total Order Value:</span>
+        <strong style="font-size: 1.25rem; color: #1e1b4b;" id="bulkTotalOrderValue">₹11,000</strong>
+      </div>
+      <div class="advance-split-grid">
+        <div class="advance-token-pill">
+          <div style="font-size: 0.72rem; font-weight: 800; color: #166534; text-transform: uppercase;">20% Advance Token (Now)</div>
+          <div style="font-size: 1.2rem; font-weight: 800; color: #15803d; margin-top: 0.2rem;" id="bulkAdvanceTokenAmount">₹2,200</div>
+          <div style="font-size: 0.7rem; color: #166534; margin-top: 0.15rem;">Locks harvest with farmer</div>
+        </div>
+        <div class="delivery-balance-pill">
+          <div style="font-size: 0.72rem; font-weight: 800; color: #475569; text-transform: uppercase;">80% Balance on Delivery</div>
+          <div style="font-size: 1.2rem; font-weight: 800; color: #334155; margin-top: 0.2rem;" id="bulkBalanceDeliveryAmount">₹8,800</div>
+          <div style="font-size: 0.7rem; color: #64748b; margin-top: 0.15rem;">Upon Mandi gate inspection</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Method Selector for Advance Token -->
+    <div style="margin-bottom: 1rem;">
+      <label style="font-weight: 700; font-size: 0.85rem; color: #0f172a; margin-bottom: 0.4rem; display: block;">
+        Select Advance Payment Method / முன்பண முறை:
+      </label>
+      <div class="pay-method-grid">
+        <div class="pay-method-card active" id="bulkPayMethodOnline" onclick="switchBulkAdvanceMethod('online')">
+          <div class="pay-method-icon">💸</div>
+          <div class="pay-method-title">UPI / Net Banking</div>
+          <div class="pay-method-sub">Instant 20% Token</div>
+        </div>
+        <div class="pay-method-card" id="bulkPayMethodCard" onclick="switchBulkAdvanceMethod('card')">
+          <div class="pay-method-icon">💳</div>
+          <div class="pay-method-title">Corporate Card</div>
+          <div class="pay-method-sub">Visa / RuPay / MC</div>
+        </div>
+        <div class="pay-method-card" id="bulkPayMethodCOD" onclick="switchBulkAdvanceMethod('cod')">
+          <div class="pay-method-icon">📝</div>
+          <div class="pay-method-title">Contract Agreement</div>
+          <div class="pay-method-sub">Full Mandi Settlement</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Bulk Advance Details Form -->
+    <div id="bulkAdvanceFormOnline" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px; padding: 0.85rem; margin-bottom: 1rem;">
+      <div style="font-size: 0.82rem; color: #166534; font-weight: 700; margin-bottom: 0.35rem;">
+        Direct Farmer UPI Beneficiary: <span id="bulkModalFarmerUPI" style="color: #14532d;">ramesh.farmer@sbi</span>
+      </div>
+      <div style="display: flex; gap: 0.5rem;">
+        <button type="button" class="btn btn-outline btn-sm" style="flex: 1; background: #fff;" onclick="showToast('GPay selected for advance token')">GPay</button>
+        <button type="button" class="btn btn-outline btn-sm" style="flex: 1; background: #fff;" onclick="showToast('PhonePe selected for advance token')">PhonePe</button>
+        <button type="button" class="btn btn-outline btn-sm" style="flex: 1; background: #fff;" onclick="showToast('Paytm selected for advance token')">Paytm</button>
+      </div>
+    </div>
+
+    <div id="bulkAdvanceFormCard" style="display: none; background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 0.85rem; margin-bottom: 1rem;">
+      <div class="form-group" style="margin-bottom: 0.5rem;">
+        <label style="font-size: 0.78rem; font-weight: 700;">Corporate Cardholder Name</label>
+        <input type="text" id="bulkCardHolderName" class="form-control" value="Agro Wholesale Traders Pvt Ltd">
+      </div>
+      <div class="form-group" style="margin-bottom: 0.5rem;">
+        <label style="font-size: 0.78rem; font-weight: 700;">16-Digit Card Number</label>
+        <input type="text" id="bulkCardNumber" class="form-control" placeholder="4123 5678 9012 3456" maxlength="19" oninput="formatCardNumberInput(this)">
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+        <div>
+          <label style="font-size: 0.78rem; font-weight: 700;">Expiry (MM/YY)</label>
+          <input type="text" id="bulkCardExpiry" class="form-control" placeholder="12/28" maxlength="5" oninput="formatCardExpiryInput(this)">
+        </div>
+        <div>
+          <label style="font-size: 0.78rem; font-weight: 700;">CVV</label>
+          <input type="password" id="bulkCardCVV" class="form-control" placeholder="•••" maxlength="4">
+        </div>
+      </div>
+    </div>
+
+    <div id="bulkAdvanceFormCOD" style="display: none; background: #fefce8; border: 1.5px solid #fde047; border-radius: 12px; padding: 0.85rem; margin-bottom: 1rem;">
+      <div style="font-size: 0.82rem; color: #854d0e; line-height: 1.4;">
+        🤝 <strong>Mandi Contract Settlement:</strong> 100% total amount settled at Mandi gate weighbridge upon delivery. Formal purchase invoice generated.
+      </div>
+    </div>
+
+    <!-- Confirm Advance Button -->
+    <button id="btnConfirmBulkAdvance" class="btn btn-primary" style="width: 100%; font-size: 1.05rem; padding: 0.85rem; background: #4338ca;" onclick="processBulkProcureSubmission()">
+      Pay 20% Advance (₹2,200) &amp; Confirm Procurement Order &rarr;
+    </button>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

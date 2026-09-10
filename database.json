@@ -1,0 +1,297 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "firstName": "Ramesh",
+      "mobile": "9876543210",
+      "email": "ramesh.farmer@kisan.in",
+      "username": "ramesh_farmer",
+      "password": "password123",
+      "role": "farmer",
+      "farmName": "Ramesh Organic Farms, Coimbatore",
+      "rating": 4.9
+    },
+    {
+      "id": "u2",
+      "firstName": "Ananya",
+      "mobile": "9840123456",
+      "email": "ananya.consumer@gmail.com",
+      "username": "ananya_buyer",
+      "password": "password123",
+      "role": "consumer",
+      "address": "42, Green Avenue, Chennai"
+    },
+    {
+      "id": "u3",
+      "firstName": "Agro Wholesale Corp",
+      "mobile": "9811223344",
+      "email": "procurement@agrowholesale.in",
+      "username": "agri_wholesale",
+      "password": "password123",
+      "role": "bulk_buyer",
+      "companyName": "Agro Wholesale Traders Pvt Ltd",
+      "gstin": "33AAACA1234B1Z5"
+    },
+    {
+      "id": "u4",
+      "firstName": "Senthil Kumar",
+      "mobile": "9876501234",
+      "email": "senthil.k@gmail.com",
+      "username": "senthil_farmer",
+      "password": "password123",
+      "role": "farmer",
+      "farmName": "Senthil Kumar Farms",
+      "companyName": ""
+    },
+    {
+      "id": "u5",
+      "firstName": "Murugan Farmer",
+      "mobile": "9842112345",
+      "email": "murugan@farm.in",
+      "username": "murugan_test",
+      "password": "pass123",
+      "role": "farmer",
+      "farmName": "Murugan Farmer Farms",
+      "location": "Dindigul, Tamil Nadu",
+      "bankName": "Canara Bank",
+      "accountNumber": "987654321012",
+      "ifsc": "CNRB0001234",
+      "upi": "murugan@cnrb",
+      "companyName": "",
+      "gstin": "",
+      "businessType": "",
+      "address": ""
+    }
+  ],
+  "crops": [
+    {
+      "id": "c8",
+      "nameEn": "b",
+      "nameTa": "b",
+      "farmerName": "Ramesh Kumar",
+      "farmerBank": "State Bank of India (SBI) A/c XXXX-XXXX-4921",
+      "farmerUPI": "ramesh.farmer@sbi",
+      "category": "vegetables",
+      "grade": "Grade A",
+      "quantity": "200 kg",
+      "harvestDate": "Today (Fresh Farm Picked)",
+      "price": 40,
+      "bulkPrice": 32,
+      "farmCity": "Pollachi",
+      "farmLocation": "Pollachi, Coimbatore - 642001",
+      "distanceKm": {
+        "Pollachi": 2.1,
+        "Coimbatore": 38,
+        "Tirupur": 62,
+        "Erode": 105,
+        "Salem": 168,
+        "Madurai": 150,
+        "Chennai": 510
+      },
+      "isOrganic": true,
+      "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=500&auto=format&fit=crop&q=80"
+    },
+    {
+      "name": "Test Organic Carrot",
+      "price": 40,
+      "image": "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=500",
+      "id": "c7"
+    },
+    {
+      "id": "c1",
+      "farmerId": "u1",
+      "farmerName": "Ramesh Kumar (Coimbatore)",
+      "name": "Coimbatore Fresh Farm Tomatoes",
+      "category": "vegetables",
+      "price": 28,
+      "unit": "kg",
+      "quantity": 350,
+      "minBulkQty": 50,
+      "bulkPrice": 22,
+      "harvestDate": "2026-09-07",
+      "isOrganic": true,
+      "location": "Pollachi, Coimbatore, Tamil Nadu",
+      "image": "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=500&auto=format&fit=crop&q=80",
+      "description": "Naturally sun-ripened red tomatoes picked this morning. Rich in lycopene, free from chemical pesticides."
+    },
+    {
+      "id": "c2",
+      "farmerId": "u1",
+      "farmerName": "Ramesh Kumar (Coimbatore)",
+      "name": "Organic Salem Curcumin Turmeric",
+      "category": "spices",
+      "price": 140,
+      "unit": "kg",
+      "quantity": 800,
+      "minBulkQty": 100,
+      "bulkPrice": 115,
+      "harvestDate": "2026-09-02",
+      "isOrganic": true,
+      "location": "Salem, Tamil Nadu",
+      "image": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=500&auto=format&fit=crop&q=80",
+      "description": "High curcumin grade raw Salem finger turmeric roots. Unpolished, chemical-free and nutrient dense."
+    },
+    {
+      "id": "c3",
+      "farmerId": "u1",
+      "farmerName": "Ramesh Kumar (Coimbatore)",
+      "name": "Nashik Red Fresh Onions",
+      "category": "vegetables",
+      "price": 32,
+      "unit": "kg",
+      "quantity": 1200,
+      "minBulkQty": 200,
+      "bulkPrice": 25,
+      "harvestDate": "2026-09-05",
+      "isOrganic": false,
+      "location": "Nashik, Maharashtra",
+      "image": "https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=500&auto=format&fit=crop&q=80",
+      "description": "Crisp medium-large red onions with long shelf life. Direct from farmer fields."
+    },
+    {
+      "id": "c4",
+      "farmerId": "u1",
+      "farmerName": "Gurpreet Singh (Amritsar)",
+      "name": "Traditional Punjab Basmati Rice (1121)",
+      "category": "grains",
+      "price": 95,
+      "unit": "kg",
+      "quantity": 5000,
+      "minBulkQty": 500,
+      "bulkPrice": 78,
+      "harvestDate": "2026-08-20",
+      "isOrganic": true,
+      "location": "Amritsar, Punjab",
+      "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500&auto=format&fit=crop&q=80",
+      "description": "Aged premium long-grain fragrant 1121 Basmati paddy, unadulterated directly from Punjab farmlands."
+    },
+    {
+      "id": "c5",
+      "farmerId": "u1",
+      "farmerName": "Murugan K (Dindigul)",
+      "name": "Guntur Spicy Red Chillies (Teja)",
+      "category": "spices",
+      "price": 180,
+      "unit": "kg",
+      "quantity": 600,
+      "minBulkQty": 100,
+      "bulkPrice": 155,
+      "harvestDate": "2026-09-01",
+      "isOrganic": true,
+      "location": "Guntur, Andhra Pradesh",
+      "image": "https://images.unsplash.com/photo-1588252303782-cb80119abd6d?w=500&auto=format&fit=crop&q=80",
+      "description": "Sun-dried fiery red hot chillies with vibrant deep color and maximum pungency."
+    },
+    {
+      "id": "c6",
+      "farmerId": "u1",
+      "farmerName": "Suresh Patil (Ratnagiri)",
+      "name": "Ratnagiri Alphonso Mango (Hapus)",
+      "category": "fruits",
+      "price": 320,
+      "unit": "dozen",
+      "quantity": 180,
+      "minBulkQty": 25,
+      "bulkPrice": 260,
+      "harvestDate": "2026-09-04",
+      "isOrganic": true,
+      "location": "Ratnagiri, Maharashtra",
+      "image": "https://images.unsplash.com/photo-1553279768-865429fa0078?w=500&auto=format&fit=crop&q=80",
+      "description": "Authentic GI tagged Ratnagiri Alphonso mangoes, hand-picked tree ripened with rich golden pulp."
+    }
+  ],
+  "orders": [
+    {
+      "bulkOrderId": "B2B-903",
+      "cropId": "c1",
+      "cropName": "Fresh Tomatoes",
+      "farmerName": "Ramesh Kumar",
+      "volume": "500 kg",
+      "totalAmount": 11000,
+      "advanceAmount": 2200,
+      "balanceAmount": 8800,
+      "paymentMethod": "UPI",
+      "status": "Advance Paid & Scheduled",
+      "id": "ORD-1003"
+    },
+    {
+      "id": "ORD-1002",
+      "consumerId": "u3",
+      "consumerName": "Agro Wholesale Corp",
+      "items": [
+        {
+          "cropId": "c2",
+          "cropName": "Organic Salem Curcumin Turmeric",
+          "quantity": 1,
+          "price": 140,
+          "total": 140
+        }
+      ],
+      "totalAmount": 140,
+      "deliveryAddress": "42, Green Avenue, Anna Nagar, Chennai - 600040",
+      "paymentMethod": "UPI (Google Pay, PhonePe, Paytm)",
+      "status": "Pending",
+      "date": "8/9/2026 03:19 pm"
+    },
+    {
+      "id": "ORD-1001",
+      "consumerId": "u2",
+      "consumerName": "Ananya",
+      "items": [
+        {
+          "cropId": "c1",
+          "cropName": "Coimbatore Fresh Farm Tomatoes",
+          "quantity": 5,
+          "price": 28,
+          "total": 140
+        },
+        {
+          "cropId": "c2",
+          "cropName": "Organic Salem Curcumin Turmeric",
+          "quantity": 1,
+          "price": 140,
+          "total": 140
+        }
+      ],
+      "totalAmount": 280,
+      "deliveryAddress": "42, Green Avenue, Chennai",
+      "paymentMethod": "UPI (GPay / PhonePe)",
+      "status": "Packed",
+      "date": "2026-09-08 11:30 AM"
+    }
+  ],
+  "rfqs": [
+    {
+      "cropName": "Fresh Tomatoes Tender",
+      "targetPrice": 24,
+      "targetQuantity": "1000 kg",
+      "id": "RFQ-503"
+    },
+    {
+      "id": "RFQ-502",
+      "buyerId": "u3",
+      "buyerName": "Agro Wholesale Corp",
+      "cropName": "Organic Salem Curcumin Turmeric",
+      "targetQuantity": "50000kg",
+      "targetPrice": "₹115 / kg",
+      "targetDate": "2026-09-17",
+      "deliveryLocation": "chennai",
+      "status": "Broadcasting to Farmers",
+      "notes": "dfsd",
+      "date": "8/9/2026"
+    },
+    {
+      "id": "RFQ-501",
+      "buyerId": "u3",
+      "buyerName": "Agro Wholesale Corp",
+      "cropName": "Traditional Punjab Basmati Rice (1121)",
+      "targetQuantity": "2500 kg (25 Quintals)",
+      "targetPrice": "₹75 / kg",
+      "targetDate": "2026-09-20",
+      "deliveryLocation": "Koyambedu Mandi, Chennai",
+      "status": "Pending Quote",
+      "date": "2026-09-08 09:15 AM",
+      "notes": "Need moisture level below 12%. Quality test certificate required."
+    }
+  ]
+}

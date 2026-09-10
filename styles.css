@@ -1,0 +1,998 @@
+/* Mann Mithra - Agriculture Direct Platform CSS */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+Telugu:wght@400;600;700&display=swap');
+
+:root {
+  --primary-50: #f0fdf4;
+  --primary-100: #dcfce7;
+  --primary-200: #bbf7d0;
+  --primary-300: #86efac;
+  --primary-500: #22c55e;
+  --primary-600: #16a34a;
+  --primary-700: #15803d;
+  --primary-800: #166534;
+  --primary-900: #14532d;
+  
+  --farm-mint: #f4faf6;
+  --farm-green-dark: #1e3a29;
+  --farm-card-bg: #ffffff;
+  --farm-border: #d5e8dc;
+  
+  --harvest-gold: #f59e0b;
+  --earth-brown: #78350f;
+  
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+
+  --shadow-card: 0 4px 15px rgba(22, 101, 52, 0.08);
+  --shadow-lg: 0 12px 28px -4px rgba(20, 83, 45, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Tamil', 'Noto Sans Devanagari', sans-serif;
+  background: linear-gradient(rgba(20, 83, 45, 0.45), rgba(15, 23, 42, 0.7)),
+              url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&q=80') center/cover fixed no-repeat;
+  color: var(--gray-900);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* App Header */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 2px solid var(--primary-200);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.nav-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0.65rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.brand-logo-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #15803d, #14532d);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 10px rgba(21, 128, 61, 0.35);
+  color: #fff;
+}
+
+.brand-name-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #14532d;
+  line-height: 1.1;
+}
+
+.brand-subtitle-line {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  font-weight: 600;
+}
+
+.nav-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Languages Dropdown */
+.lang-picker {
+  background: #ffffff;
+  border: 1.5px solid var(--primary-300);
+  border-radius: 20px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #166534;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Main Container Layout */
+.main-content-area {
+  max-width: 1360px;
+  margin: 1.5rem auto 5rem;
+  padding: 0 1.25rem;
+}
+
+/* Universal Dashboard Layout for Farmer, Consumer, Bulk Buyer */
+.dashboard-layout-container {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(18px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: var(--shadow-lg);
+  padding: 1.75rem 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Universal Sub-Navigation Tabs Bar */
+.subnav-tabs-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f4faf6;
+  border: 1.5px solid var(--farm-border);
+  border-radius: 18px;
+  padding: 0.4rem 0.5rem;
+  margin-bottom: 1.75rem;
+  overflow-x: auto;
+}
+
+.subnav-tab-btn {
+  background: transparent;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #475569;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.subnav-tab-btn:hover {
+  background: #e2f5e9;
+  color: #15803d;
+}
+
+.subnav-tab-btn.active {
+  background: #15803d;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(21, 128, 61, 0.35);
+}
+
+.subnav-tab-btn.b2b-tab.active {
+  background: #4338ca;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(67, 56, 202, 0.35);
+}
+
+/* Privacy Shield Banner */
+.privacy-shield-banner {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.88rem;
+  color: #166534;
+  font-weight: 600;
+}
+
+/* ================= LOCATION & NEAREST FARMER BAR ================= */
+.location-filter-bar {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 18px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.location-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.location-select {
+  padding: 0.5rem 0.85rem;
+  border-radius: 10px;
+  border: 1.5px solid #15803d;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #14532d;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+.dist-filter-pills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.dist-pill-btn {
+  background: #fff;
+  border: 1.5px solid #cbd5e1;
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dist-pill-btn.active {
+  background: #15803d;
+  color: #fff;
+  border-color: #15803d;
+}
+
+/* Nearest Farmer Distance Badge on Produce Cards */
+.farm-distance-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 8px;
+  border: 1px solid #86efac;
+}
+
+/* Harvest Date Badge */
+.harvest-date-badge {
+  font-size: 0.75rem;
+  color: #b45309;
+  background: #fef3c7;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* Direct Payment Farmer Notice Box */
+.direct-pay-box {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.direct-credit-badge {
+  background: #15803d;
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+/* ================= 4-STEP LIVE ORDER TRACKING STEPPER ================= */
+.order-tracking-card {
+  background: #ffffff;
+  border: 1.5px solid var(--farm-border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.stepper-timeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem 0 1.5rem;
+  position: relative;
+}
+
+.stepper-timeline::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: 30px;
+  right: 30px;
+  height: 4px;
+  background: #e2e8f0;
+  z-index: 1;
+}
+
+.stepper-progress-fill {
+  position: absolute;
+  top: 22px;
+  left: 30px;
+  height: 4px;
+  background: #15803d;
+  z-index: 2;
+  transition: width 0.4s ease;
+}
+
+.stepper-node {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 140px;
+}
+
+.stepper-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #cbd5e1;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: all 0.3s;
+}
+
+.stepper-node.active .stepper-circle {
+  border-color: #15803d;
+  background: #e8f5ed;
+  color: #15803d;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+}
+
+.stepper-node.completed .stepper-circle {
+  border-color: #15803d;
+  background: #15803d;
+  color: #ffffff;
+}
+
+.stepper-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #334155;
+  line-height: 1.25;
+}
+
+/* ================= CHATBOX VOICE ASSISTANT ================= */
+.voice-assistant-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #e8f5ed;
+  border: 1.5px solid #86efac;
+  border-radius: 12px;
+  padding: 0.6rem 0.85rem;
+  margin: 0.5rem 0.75rem;
+}
+
+.voice-mic-btn {
+  background: #15803d;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 3px 8px rgba(21, 128, 61, 0.35);
+}
+
+.voice-mic-btn.recording {
+  background: #ef4444;
+  animation: micPulse 1.2s infinite;
+}
+
+@keyframes micPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+  70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+/* Dashboard Cards Grid & Produce Grid */
+.dashboard-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .dashboard-grid-2col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dashboard-card {
+  background: #ffffff;
+  border: 1.5px solid var(--farm-border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.produce-grid-full {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.crop-listing-card {
+  background: #ffffff;
+  border: 1.5px solid var(--farm-border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+}
+
+.crop-listing-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.crop-listing-body {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.farmer-fpo-badge {
+  background: #dcfce7;
+  color: #166534;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #bbf7d0;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  padding: 0.65rem 1.25rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: #15803d;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #166534;
+}
+
+.btn-outline {
+  background: #fff;
+  border: 1.5px solid #cbd5e1;
+  color: #334155;
+}
+
+.btn-outline:hover {
+  background: #f1f5f9;
+}
+
+.btn-sm {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+/* Auth Cards */
+.auth-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 120px);
+  padding: 1rem;
+}
+
+.auth-card {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 540px;
+  padding: 2.25rem 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.35rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  border: 1.5px solid #cbd5e1;
+  font-size: 0.92rem;
+  font-family: inherit;
+  transition: all 0.2s;
+  background: #fff;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #15803d;
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.15);
+}
+
+.role-select-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+.role-radio-card {
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: #fff;
+}
+
+.role-radio-card.selected {
+  border-color: #15803d;
+  background: #f0fdf4;
+}
+
+.role-info-title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #0f172a;
+}
+
+.role-info-desc {
+  font-size: 0.76rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* Chatbot Drawer */
+.floating-chatbot-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  background: linear-gradient(135deg, #15803d, #14532d);
+  color: #fff;
+  border-radius: 50px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 10px 25px rgba(21, 128, 61, 0.4);
+  cursor: pointer;
+  z-index: 1000;
+  border: 2px solid #86efac;
+}
+
+.chatbot-drawer {
+  position: fixed;
+  bottom: 85px;
+  left: 24px;
+  width: 400px;
+  max-width: calc(100vw - 48px);
+  height: 540px;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid var(--gray-200);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  z-index: 1001;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chatbot-drawer.active {
+  display: flex;
+}
+
+.chatbot-header {
+  background: linear-gradient(135deg, #15803d, #14532d);
+  color: #fff;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chatbot-tabs {
+  display: flex;
+  background: #f1f5f9;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.chat-tab-btn {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gray-600);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.chat-tab-btn.active {
+  color: #15803d;
+  background: #fff;
+  border-bottom: 2px solid #15803d;
+}
+
+.chatbot-messages-body {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fafaf9;
+}
+
+.chat-bubble {
+  max-width: 82%;
+  padding: 9px 12px;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
+.chat-bubble.bot {
+  background: #ffffff;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  align-self: flex-start;
+}
+
+.chat-bubble.user {
+  background: #15803d;
+  color: #ffffff;
+  align-self: flex-end;
+}
+
+.chatbot-input-bar {
+  padding: 10px 12px;
+  background: #fff;
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  gap: 8px;
+}
+
+.chatbot-input-bar input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--gray-300);
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.chatbot-input-bar button {
+  background: #15803d;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toast {
+  background: #fff;
+  border-left: 4px solid #15803d;
+  padding: 0.85rem 1.25rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ================= MULTI-METHOD PAYMENT SELECTORS (REQ #1) ================= */
+.pay-method-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+@media (max-width: 600px) {
+  .pay-method-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pay-method-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.85rem 0.5rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.pay-method-card:hover {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.pay-method-card.active {
+  border-color: #15803d;
+  background: #f0fdf4;
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.2);
+}
+
+.pay-method-card.b2b.active {
+  border-color: #4338ca;
+  background: #eef2ff;
+  box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.2);
+}
+
+.pay-method-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.pay-method-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.pay-method-sub {
+  font-size: 0.7rem;
+  color: #64748b;
+  margin-top: 0.15rem;
+}
+
+/* Profile Photo Avatar Hover & Overlay (REQ #2) */
+.profile-avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.profile-avatar-wrapper .avatar-edit-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.profile-avatar-wrapper:hover .avatar-edit-overlay {
+  opacity: 1;
+}
+
+/* ================= 3-SECOND APP LOGO SPLASH SCREEN ================= */
+.app-splash-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #ffffff 0%, #f0fdf4 60%, #dcfce7 100%);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s ease;
+}
+
+.app-splash-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.splash-content-box {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: splashPulse 2s ease-in-out infinite alternate;
+}
+
+.splash-logo-img {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 12px 36px rgba(21, 128, 61, 0.28), 0 0 0 6px #15803d;
+  margin-bottom: 1.5rem;
+  background: #ffffff;
+  border: 4px solid #ffffff;
+}
+
+.splash-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #14532d;
+  letter-spacing: -0.5px;
+  margin: 0 0 0.4rem 0;
+}
+
+.splash-subtitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #166534;
+  margin: 0 0 1.25rem 0;
+}
+
+.splash-timer-progress {
+  width: 220px;
+  height: 6px;
+  background: #bbf7d0;
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.splash-timer-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #15803d, #22c55e);
+  border-radius: 999px;
+  animation: splashTimerFill 3s linear forwards;
+}
+
+@keyframes splashTimerFill {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes splashPulse {
+  0% { transform: scale(0.98); }
+  100% { transform: scale(1.02); }
+}
+
+/* Brand Logo Header Image */
+.brand-logo-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #15803d;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Bulk Advance Payment Styles */
+.advance-split-card {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.advance-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.advance-token-pill {
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  border-radius: 8px;
+  padding: 0.6rem;
+  text-align: center;
+}
+
+.delivery-balance-pill {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.6rem;
+  text-align: center;
+}
+
+.carrier-badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+
